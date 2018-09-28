@@ -1,0 +1,2 @@
+# enable completion with single TAB
+set show-all-if-ambiguous on

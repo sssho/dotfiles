@@ -1,0 +1,21 @@
+# Locale
+export LANG=en_US.UTF-8
+
+# Editor
+export EDITOR="emacsclient"
+
+export TERM=xterm-256color
+
+# Pager
+export PAGER=less
+export LESS="-R -M -i -S -X"
+export LESSCHARSET=utf-8
+
+# Grep
+# GREP_OPTIONS=" --color=always"
+GREP_OPTIONS="--color=auto"
+GREP_OPTIONS+=" --binary-files=without-match"
+GREP_OPTIONS+=" --directories=recurse"
+GREP_OPTIONS+=" --exclude-dir=.svn"
+GREP_OPTIONS+=" --exclude-dir=.git"
+export GREP_OPTIONS

@@ -1,0 +1,24 @@
+# bash/zsh common aliases
+
+alias ls='ls -F --color=auto'
+alias 1='ls -1'
+alias la='ls -lha'
+alias ltr='ls -lhtr'
+alias latr='ls -lhatr'
+
+alias ..='cd ../'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+alias l='less'
+
+alias g='git'
+alias m='make'
+alias sc='screen'
+
+alias e='emacsclient -n'
+alias em='TERM=xterm-256color emacs -nw'
+
+# for solarized dark theme
+alias ag='ag --color --color-line-number=37 --color-match="01;31" --color-path=36'

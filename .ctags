@@ -1,0 +1,2 @@
+--langmap=Verilog:+.sv
+--regex-verilog=/class[ \t]+([a-zA-Z_0-9]+)/\1/,class/

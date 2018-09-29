@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: docs
+# key: docs
+# --
+"""
+Args:
+
+Returns:
+
+"""

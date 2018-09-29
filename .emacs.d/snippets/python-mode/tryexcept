@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: tryexcept
+# key: tryexcept
+# --
+try:
+    $0
+except:

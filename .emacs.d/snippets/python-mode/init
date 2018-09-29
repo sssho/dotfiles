@@ -1,0 +1,16 @@
+# key: i
+# name: i
+# --
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""$0"""
+
+
+def main():
+    """Main."""
+    pass
+
+
+if __name__ == '__main__':
+    main()

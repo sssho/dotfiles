@@ -16,6 +16,11 @@ zstyle ':completion:*' completer _complete _match _expand _prefix
 # ??
 zstyle ':completion:*' verbose yes
 
+# For cdr
+if [[ ! -d ~/.cache/shell ]]; then
+    mkdir -p ~/.cache/shell
+fi
+
 # cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs

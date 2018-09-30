@@ -1,0 +1,12 @@
+[user]
+	name = sssho
+	email = 43515414+sssho@users.noreply.github.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	cm = commit

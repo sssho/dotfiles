@@ -6,7 +6,9 @@
 	status = auto
 	branch = auto
 [alias]
-	st = status
-	br = branch
+	l = log
+	s = status
+	d = diff
+	b = branch
 	co = checkout
 	cm = commit

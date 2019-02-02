@@ -19,3 +19,6 @@ GREP_OPTIONS+=" --directories=recurse"
 GREP_OPTIONS+=" --exclude-dir=.svn"
 GREP_OPTIONS+=" --exclude-dir=.git"
 export GREP_OPTIONS
+
+# Go
+export GOPATH=$HOME/go

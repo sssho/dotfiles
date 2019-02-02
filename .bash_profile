@@ -1,10 +1,10 @@
-if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
+if [[ -r ~/.bashrc ]]; then
+    source ~/.bashrc
 fi
 
 export PATH=$HOME/local/bin:$PATH
 
 # Enviroment Variables
-if [ -f ~/.exports ]; then
+if [[ -r ~/.exports ]]; then
     source ~/.exports
 fi

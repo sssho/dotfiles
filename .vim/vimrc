@@ -1,0 +1,25 @@
+set number
+set relativenumber
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+set hidden
+set smartindent
+
+"Visualize empty chars
+"set list
+
+syntax enable
+set background=dark
+"colorscheme solarized
+
+inoremap ( ()<LEFT>
+inoremap { {}<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+inoremap [ []<LEFT>
+
+imap <silent> jj <ESC>
+

@@ -13,6 +13,8 @@ alias rm='rm -i'
 
 alias l='less'
 
+alias grep='grep --color=auto --binary-files=without-match --directories=recurse --exclude-dir=.svn --exclude-dir=.git'
+
 alias g='git'
 alias m='make'
 alias sc='screen'

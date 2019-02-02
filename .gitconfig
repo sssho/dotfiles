@@ -1,6 +1,7 @@
 [user]
 	name = sssho
 	email = 43515414+sssho@users.noreply.github.com
+
 [color]
 	diff = auto
 	status = auto
@@ -12,3 +13,12 @@
 	b = branch
 	co = checkout
 	cm = commit
+	ls = ls-files
+	ln = log --name-status
+	a = add
+	p = push
+	f = fetch
+	m = merge
+	lo = log --oneline
+[fetch]
+	prune = true

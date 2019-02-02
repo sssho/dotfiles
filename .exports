@@ -1,10 +1,17 @@
 # Locale
 export LANG=en_US.UTF-8
 
+export TERM=xterm-256color
+
+# ls (TERM must be set before)
+if [[ -x /usr/bin/dircolors ]]; then
+    if [[ -r ~/.dir_colors ]]; then
+        eval "$(dircolors -b ~/.dir_colors)"
+    fi
+fi
+
 # Editor
 export EDITOR="emacsclient"
-
-export TERM=xterm-256color
 
 # Pager
 export PAGER=less

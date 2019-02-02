@@ -16,3 +16,8 @@ alias -g G='| grep'
 alias -g S='| sed'
 alias -g X='| xargs'
 alias -g A='| ag'
+
+if which xclip &> /dev/null; then
+    alias -g C='| xclip -selection c'
+    alias cb='xclip -o'
+fi

@@ -1,8 +1,8 @@
-if [[ -f ~/.aliases  ]]; then
+if [[ -r ~/.aliases ]]; then
     source ~/.aliases
 fi
 
-if [[ -f ~/.aliases.local  ]]; then
+if [[ -r ~/.aliases.local ]]; then
     source ~/.aliases.local
 fi
 
@@ -12,7 +12,7 @@ alias d='ls -d1 *(/)'
 alias dl='ls -dl1 *(/)'
 
 alias -g L='|& less -XR'
-alias -g G='| grep'
+alias -g G='| \grep --color=always'
 alias -g S='| sed'
 alias -g X='| xargs'
 alias -g A='| ag'

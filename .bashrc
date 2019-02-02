@@ -1,8 +1,8 @@
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+if [[ -r /etc/bashrc ]]; then
+    source /etc/bashrc
 fi
 
-if [ ~/.aliases ]; then
+if [[ -r ~/.aliases ]]; then
     source ~/.aliases
 fi
 

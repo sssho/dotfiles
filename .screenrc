@@ -1,4 +1,4 @@
-escape ^Oo
+escape ^Tt
 
 caption always "%?%F%{= kG}%:%{= kG}%?%-w%?%F%{=b kR}%:%{= kd}%?%n %t%{-}%+w"
 sorendition "= ky"  # vetical bar color

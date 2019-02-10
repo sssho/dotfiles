@@ -22,5 +22,10 @@ alias sc='screen'
 alias e='emacsclient -n'
 alias em='TERM=xterm-256color emacs -nw'
 
-# for solarized dark theme
-alias ag='ag --color --color-line-number=37 --color-match="01;31" --color-path=36'
+if which ag &> /dev/null; then
+    # for solarized dark theme
+    alias ag='ag --color --color-line-number=37 --color-match="01;31" --color-path=36'
+fi
+
+alias sunovim='vim -N -u NONE -i NONE --noplugin'
+

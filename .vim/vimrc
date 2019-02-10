@@ -1,5 +1,36 @@
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'altercation/vim-colors-solarized'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'python-mode/python-mode'
+Plug 'nathanaelkane/vim-indent-guides'
+call plug#end()
+
+"python-mode
+let g:pymode_python = 'python3'
+let g:pymode = 0
+
+"vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
 set number
 set relativenumber
+
+"set autochdir
+
+set ttimeoutlen=10
+
+set showcmd
+
+set showmatch
 
 set expandtab
 set tabstop=4
@@ -13,7 +44,7 @@ set smartindent
 
 syntax enable
 set background=dark
-"colorscheme solarized
+colorscheme solarized
 
 inoremap ( ()<LEFT>
 inoremap { {}<LEFT>

@@ -11,7 +11,7 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # Editor
-export EDITOR="emacsclient"
+export EDITOR="vim"
 
 # Pager
 export PAGER=less

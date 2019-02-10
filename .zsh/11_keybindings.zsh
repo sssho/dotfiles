@@ -1,3 +1,6 @@
+# Use emacs style
+bindkey -e
+
 # Disable not used keys
 # bindkey -r "^J"
 bindkey -r "^O" # use for screen/tmux

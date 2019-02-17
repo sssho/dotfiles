@@ -19,4 +19,4 @@ export LESS="-R -M -i -S -X"
 export LESSCHARSET=utf-8
 
 # Go
-export GOPATH=$HOME/go
+export GOPATH=$HOME/project/go

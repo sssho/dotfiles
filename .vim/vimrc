@@ -34,7 +34,7 @@ Plug 'fatih/vim-go', { 'tag': 'v1.19', 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " ale
-let g:ale_fixers = {'python': ['isort', 'yapf']}
+let g:ale_fixers = { 'python': ['isort', 'yapf'] }
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -63,7 +63,6 @@ let g:go_term_mode = 'split'
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
-let g:solarized_visibility = "low"
 
 set number
 set relativenumber
@@ -102,6 +101,7 @@ set list
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_visibility = "low"
 
 imap <silent> jj <ESC>
 

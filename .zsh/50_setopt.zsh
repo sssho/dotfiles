@@ -1,10 +1,12 @@
 # Enable completion even after =. e.g. --prefix=hoge
 setopt magic_equal_subst
 
-# Delete the older command
-# setopt hist_ignore_all_dups
+# If a new command line being added to the history list duplicates an older one,
+# the older command is removed from the list (even if it is not the previous event).
+setopt hist_ignore_all_dups
 
-# Do not add a command that already in the history
+# Do not enter command lines into the history list if they are duplicates
+# of the previous event.
 setopt hist_ignore_dups
 
 # Do not add a command that following space

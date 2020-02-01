@@ -11,6 +11,10 @@ function fzf_select_history() {
     zle reset-prompt
 }
 
+if which fd &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd -H --exclude ".git" --exclude ".svn" --exclude "__pycache__"'
+fi
+
 zle -N fzf_select_history
 bindkey '^R' fzf_select_history
 

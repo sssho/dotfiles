@@ -24,3 +24,7 @@ export SAVEHIST="$HISTSIZE"
 
 # Use '/' as delimitor when backward-kill-word
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+if [[ -f ~/.zshenv.local ]]; then
+    source ~/.zshenv.local
+fi

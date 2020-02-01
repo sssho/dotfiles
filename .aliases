@@ -32,3 +32,6 @@ fi
 
 alias sunovim='vim -N -u NONE -i NONE --noplugin'
 
+if which colordiff &> /dev/null; then
+    alias cdiff="colordiff -u"
+fi

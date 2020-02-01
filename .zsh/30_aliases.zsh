@@ -22,7 +22,3 @@ if which xclip &> /dev/null; then
     alias -g C='| xclip -selection c'
     alias cb='xclip -o'
 fi
-
-if which colordiff &> /dev/null; then
-    alias cdiff=colordiff
-fi

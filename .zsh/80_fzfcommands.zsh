@@ -6,7 +6,7 @@ if ! which fzf &> /dev/null; then
 fi
 
 function fzf_select_history() {
-    BUFFER=$(fc -l -n 1 | awk '!a[$0]++' | fzf --tac --prompt "history> ")
+    BUFFER=$(fc -l -n 1 | awk '!a[$0]++' | fzf --tac --no-sort --prompt "history> ")
     CURSOR=$#BUFFER # move cursor to end of buffer
     zle reset-prompt
 }
@@ -39,7 +39,7 @@ function agf() {
 
 function goto() {
     local dst=$(cdr -l | awk '{ print $2 }' | \
-                fzf --tac --no-sort --prompt='Where do you go?> ')
+                fzf --no-sort --prompt='Where do you go?> ')
 
     if [ -n "$dst" ]; then
         cd $(eval echo $dst)

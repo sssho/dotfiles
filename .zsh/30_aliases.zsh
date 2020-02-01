@@ -16,6 +16,7 @@ alias -g G='| \grep --color=always'
 alias -g S='| sed'
 alias -g X='| xargs'
 alias -g A='| ag'
+alias -g F='$(fzf --ansi)'
 
 if which xclip &> /dev/null; then
     alias -g C='| xclip -selection c'

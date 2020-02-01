@@ -33,3 +33,11 @@ for target in $targets; do
 
     ln -s "$here/$target" "$HOME/$target"
 done
+
+# Install following apps manually
+# fzf
+# fd
+# fzf.vim
+# colordiff
+# xclip
+# vim with python3

@@ -19,3 +19,5 @@ export PS1="\[\e[36m\]\u@\h \W \[\e[0m\]\\$ "
 
 export HISTCONTROL=ignoredups
 export HISTIGNORE=ls
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

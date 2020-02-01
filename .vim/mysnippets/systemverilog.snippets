@@ -1,0 +1,78 @@
+snippet include "include" b
+\`include "${0}"
+endsnippet
+
+snippet initial "initial begin .. end" b
+initial begin
+    ${0}
+end
+endsnippet
+
+snippet module "module ... endmodule" b
+module ${1: name};
+    ${0}
+endmodule
+endsnippet
+
+snippet function "function ... endfunction" b
+function ${1:void} ${2:funcname}(${3});
+    ${0}
+endfunction
+endsnippet
+
+snippet repeat "repeat" b
+repeat(${1:10}) begin
+    ${0}
+end
+endsnippet
+
+snippet for "for loop" b
+for (${1:i} = ${2:0}; $1 < ${3}; $1++) {
+    ${0}
+}
+endsnippet
+
+snippet foreach "foreach" b
+foreach (${1:array}[${2:i}]) begin
+    ${0}  // $1[$2]
+end
+endsnippet
+
+snippet if "if" b
+if (${1:cond}) begin
+    ${0}
+end
+endsnippet
+
+snippet ifelse "if else" b
+if (${1:cond}) begin
+    ${0}
+end else begin
+end
+endsnippet
+
+snippet posedge "posedge"
+@(posedge ${1:clk})${0}
+endsnippet
+
+snippet constraint "constraint" b
+constraint ${1:constname} {
+    ${0}
+}
+endsnippet
+
+snippet void "void`" b
+void'(${1:func_call})
+endsnippet
+
+snippet cast "$cast" b
+$cast(${1:dst}, ${2:src});
+endsnippet
+
+snippet filewrite "write somethng to file" b
+int ofp;
+
+ofp = $fopen("outfile.csv", "w");
+$fdisplay(ofp, "%d, %d, %d", 1, 2, 3);
+$fclose(ofp);
+endsnippet

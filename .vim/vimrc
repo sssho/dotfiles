@@ -21,7 +21,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips', { 'tag': '3.1' }
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale', { 'tag': 'v2.3.0' }
-Plug 'Shougo/deoplete.nvim', { 'tag': '5.0' }
+Plug 'Shougo/deoplete.nvim', { 'tag': '5.1' }
 Plug 'zchee/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-go'
 Plug 'roxma/nvim-yarp'

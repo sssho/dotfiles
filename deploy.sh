@@ -9,11 +9,13 @@ targets=".aliases
 .editorconfig
 .emacs.d
 .exports
+.flake8
 .gitconfig
 .globalrc
 .inputrc
 .lesskey
 .screenrc
+.tmux.conf
 .vim
 .zsh
 .zshenv

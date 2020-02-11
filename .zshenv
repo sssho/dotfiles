@@ -1,7 +1,7 @@
 typeset -gx -U path
 
 path=(~/local/bin(N-) \
-      /usr/local/go/bin \
+      ~/local/go/bin \
       "$path[@]")
 
 typeset -gx -U fpath

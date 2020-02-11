@@ -20,7 +20,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips', { 'tag': '3.1' }
 Plug 'honza/vim-snippets'
-Plug 'w0rp/ale', { 'tag': 'v2.3.0' }
+Plug 'w0rp/ale', { 'tag': 'v2.6.0' }
 Plug 'Shougo/deoplete.nvim', { 'tag': '5.1' }
 Plug 'zchee/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-go'
@@ -30,7 +30,7 @@ Plug 'tpope/vim-fugitive', { 'tag': 'v2.5' }
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim', { 'tag': '0.9.0' }
 Plug 'cespare/vim-toml'
-Plug 'fatih/vim-go', { 'tag': 'v1.19', 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'tag': 'v1.22', 'do': ':GoUpdateBinaries' }
 Plug 'python/black'
 call plug#end()
 

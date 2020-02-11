@@ -1,0 +1,77 @@
+#!/bin/bash
+
+yum -y update
+yum -y group install 'Development Tools'
+
+yum -y install xauth # to enable x11forwarding
+yum -y install zlib-devel # pythoh zgip
+yum -y install openssl-devel # python pip
+yum -y install ncurses-devel # zsh, tmux
+yum -y install libevent # tmux
+yum-builddep -y vim-X11 # for vim (clipboard, clientserver)
+yum -y install libXmu-devel.x86_64 # xclip
+
+timedatectl set-timezone Asia/Tokyo
+
+install_xclip() {
+    local installdir="/usr/local"
+    local version="0.13"
+    local srcname="xclip-${version}"
+    local target="${installdir}/bin/xclip"
+
+    [[ -x "$target" ]] && { echo "$target already installed"; return 0; }
+
+    cd "$installdir/src" || return 1
+
+    git clone https://github.com/astrand/xclip.git -b "$version" "$srcname"
+
+    cd "./$srcname" || return 1
+    autoreconf
+    ./configure --prefix="$installdir"
+    make && make install
+
+    [[ -x "$target" ]] || return 1
+}
+
+install_zsh() {
+    local installdir="/usr/local"
+    local version="zsh-5.7.1"
+    local target="${installdir}/bin/zsh"
+
+    [[ -x "$target" ]] && { echo "$target already installed"; return 0; }
+
+    cd "$installdir/src" || return 1
+
+    git clone https://github.com/zsh-users/zsh.git -b "$version" "$version"
+    cd "./$version" || return 1
+    ./Util/preconfig
+    ./configure --prefix="$installdir"
+    make && make install
+
+    [[ -x "$target" ]] || return 1
+
+    if ! grep "$target" /etc/shells > /dev/null ; then
+        echo "$target" >> /etc/shells
+    fi
+}
+
+install_tmux() {
+    local installdir="/usr/local"
+    local target="${installdir}/bin/tmux"
+
+    [[ -x "$target" ]] && { echo "$target already installed"; return 0; }
+
+    cd "$installdir/src" || return 1
+
+    wget https://github.com/tmux/tmux/releases/download/2.9a/tmux-2.9a.tar.gz
+    tar xf tmux-2.9a.tar.gz
+    cd tmux-2.9a || return 1
+    ./configure --prefix="$installdir"
+    make && make install
+
+    [[ -x "$target" ]] || return 1
+}
+
+install_xclip || { echo "zclip install failed"; exit 1; }
+install_zsh || { echo "zsh install failed"; exit 1; }
+install_tmux || { echo "tmux install failed"; exit 1; }

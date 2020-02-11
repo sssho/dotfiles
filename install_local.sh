@@ -192,6 +192,8 @@ install_local_vimplug() {
 readonly localdir="${HOME}/local"
 readonly pyversion="3.6.10"
 
+export PATH="$localdir/bin:$PATH"
+
 install_local_python "$localdir" "$pyversion" \
     || { echo "python install failed"; exit 1; }
 setup_py_virtualenv "$localdir/python" "$pyversion" "${pyversion}-main" \

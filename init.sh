@@ -7,7 +7,7 @@ yum -y install xauth # to enable x11forwarding
 yum -y install zlib-devel # pythoh zgip
 yum -y install openssl-devel # python pip
 yum -y install ncurses-devel # zsh, tmux
-yum -y install libevent # tmux
+yum -y install libevent-devel # tmux
 yum-builddep -y vim-X11 # for vim (clipboard, clientserver)
 yum -y install libXmu-devel.x86_64 # xclip
 
@@ -45,7 +45,7 @@ install_zsh() {
     git clone https://github.com/zsh-users/zsh.git -b "$version" "$version"
     cd "./$version" || return 1
     ./Util/preconfig
-    ./configure --prefix="$installdir"
+    ./configure --prefix="$installdir" --with-tcsetpgrp
     make && make install
 
     [[ -x "$target" ]] || return 1

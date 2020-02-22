@@ -21,3 +21,4 @@ export LESSCHARSET=utf-8
 # Go
 export GOPATH=$HOME/project/go
 [ ! -d "$HOME/project/go" ] && mkdir -p "$HOME/project/go"
+export PATH=${GOPATH}/bin:$PATH

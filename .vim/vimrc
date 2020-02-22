@@ -39,6 +39,8 @@ filetype plugin indent on
 " lsp
 " Disable code linting by lsp, use ALE instead.
 let g:lsp_diagnostics_enabled = 0
+" Disable auto hover for function signature
+let g:lsp_signature_help_enabled = 0
 set omnifunc=lsp#complete
 
 " ALE
@@ -117,7 +119,8 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-nnoremap <C-]> :<C-u>LspDefinition<CR>
+" nnoremap <C-]> :<C-u>LspDefinition<CR>
+nnoremap <Leader>d :<C-u>LspDefinition<CR>
 nnoremap K :<C-u>LspHover<CR>
 " nnoremap <LocalLeader>R :<C-u>LspRename<CR>
 " nnoremap <LocalLeader>n :<C-u>LspReferences<CR>

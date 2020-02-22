@@ -20,40 +20,38 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips', { 'tag': '3.1' }
 Plug 'honza/vim-snippets'
-Plug 'w0rp/ale', { 'tag': 'v2.6.0' }
-Plug 'Shougo/deoplete.nvim', { 'tag': '5.1' }
-Plug 'zchee/deoplete-jedi'
-Plug 'deoplete-plugins/deoplete-go'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'tpope/vim-fugitive', { 'tag': 'v2.5' }
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim', { 'tag': '0.9.0' }
 Plug 'cespare/vim-toml'
-Plug 'fatih/vim-go', { 'tag': 'v1.22', 'do': ':GoUpdateBinaries' }
-Plug 'python/black'
+Plug 'w0rp/ale', { 'tag': 'v2.6.0' }
+Plug 'davidhalter/jedi-vim', { 'tag': '0.10.0' }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'mattn/vim-goimports'
 call plug#end()
 
+filetype plugin indent on
+
+" lsp
+" Disable code linting by lsp, use ALE instead.
+let g:lsp_diagnostics_enabled = 0
+set omnifunc=lsp#complete
+
+" ALE
+let g:ale_completion_enabled = 0
+
+" UltiSnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
-
-" ale
-let g:ale_fixers = { 'python': ['isort', 'black'] }
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:auto_complete_delay = 0
-inoremap <expr><CR> pumvisible() ? deoplete#close_popup() : "<CR>"
-
-set completeopt=noinsert
-set completeopt+=menuone
-
-" filetype plugin indent on
-
-" jedi-vim
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled = 0
-let g:jedi#popup_on_dot = 1
-let g:jedi#show_call_signatures = 2
+let g:UltiSnipsExpandTrigger="<c-e>"
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+    \ 'name': 'ultisnips',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+    \ }))
 
 " quickrun
 let g:quickrun_no_default_key_mappings = 1
@@ -63,17 +61,6 @@ let g:quickrun_no_default_key_mappings = 1
 " set ambiwidth=double
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-
-" vim-go
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_term_mode = 'split'
-
-" Go
-autocmd FileType go :highlight goErr cterm=bold ctermfg=214
-autocmd FileType go :match goErr /\<err\>/
-
 
 set number
 set relativenumber
@@ -118,11 +105,10 @@ let mapleader = "\<Space>"
 
 nnoremap <Leader>h :History<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>X :ALEFix<CR>
+nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>p "*p<CR>
 nnoremap <Leader>P "*P<CR>
-nnoremap <Leader>B :Black<CR>
 nnoremap <Leader>R :QuickRun<CR>
 
 imap <silent> jj <ESC>
@@ -130,10 +116,17 @@ imap <silent> jj <ESC>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
+
+nnoremap <C-]> :<C-u>LspDefinition<CR>
+nnoremap K :<C-u>LspHover<CR>
+" nnoremap <LocalLeader>R :<C-u>LspRename<CR>
+" nnoremap <LocalLeader>n :<C-u>LspReferences<CR>
+" nnoremap <LocalLeader>f :<C-u>LspDocumentDiagnostics<CR>
+" nnoremap <LocalLeader>s :<C-u>LspDocumentFormat<CR>
+nnoremap <Leader>r :<C-u>LspRename<CR>
+nnoremap <Leader>n :<C-u>LspReferences<CR>
+nnoremap <Leader>f :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <Leader>B :<C-u>LspDocumentFormat<CR>
 
 " cd %:h when opening a file
 function! s:ChangeCurrentDirectory()

@@ -141,10 +141,10 @@ endfunction
 autocmd BufEnter * call s:ChangeCurrentDirectory()
 
 function! s:SourceMyCompSource()
-    let l:svsource = expand('~/.vim/mycompsource/svsource.vim')
+  let l:svsource = expand('~/.vim/mycompsource/svsource.vim')
 
-    if filereadable(svsource)
-        execute 'source' svsource
-    endif
+  if filereadable(svsource)
+    execute 'source' svsource
+  endif
 endfunction
 call s:SourceMyCompSource()

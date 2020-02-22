@@ -36,3 +36,6 @@ tab_width = 2
 
 [*.{v,sv,svh,sva}]
 tab_width = 4
+
+[{vimrc,*.vim}]
+indent_size = 2

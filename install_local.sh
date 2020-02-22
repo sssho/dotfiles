@@ -189,6 +189,54 @@ install_local_vimplug() {
     [ -e "$target" ] || return 1
 }
 
+install_local_ctags() {
+    local installdir=$1
+
+    local srcdir="${installdir}/src"
+    local target="${installdir}/bin/ctags"
+
+    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+
+    [ -d "$srcdir" ] || mkdir -p "$srcdir"
+    cd "$srcdir" || return 1
+
+    git clone https://github.com/universal-ctags/ctags.git
+
+    cd ./ctags || return 1
+
+    ./autogen.sh
+    ./configure --prefix="$installdir"
+    make && make install
+
+    [ -x "$target" ] || return 1
+}
+
+install_local_gtags() {
+    local installdir=$1
+
+    local srcdir="${installdir}/src"
+    local target="${installdir}/bin/gtags"
+
+    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+
+    [ -d "$srcdir" ] || mkdir -p "$srcdir"
+    cd "$srcdir" || return 1
+
+    wget http://tamacom.com/global/global-6.6.4.tar.gz
+    tar zxf global-6.6.4.tar.gz
+
+    cd ./global-6.6.4 || return 1
+
+    local ctagsbin="$installdir/bin/ctags"
+
+    [ -x "$ctagsbin" ] || { echo "$ctagsbin not found."; return 1; }
+
+    ./configure --prefix="$installdir" --with-universal-ctags="$ctagsbin"
+    make && make install
+
+    [ -x "$target" ] || return 1
+}
+
 readonly localdir="${HOME}/local"
 readonly pyversion="3.6.10"
 
@@ -205,3 +253,5 @@ install_local_vim "$localdir" "$localdir/python/$pyversion" \
     || { echo "vim install failed"; exit 1; }
 install_local_vimplug "$localdir" || { echo "vimplug install failed"; exit 1; }
 install_local_zplug "$localdir" || { echo "zplug install failed"; exit 1; }
+install_local_ctags "$localdir" || { echo "ctags install failed"; exit 1; }
+install_local_gtags "$localdir" || { echo "gtags install failed"; exit 1; }

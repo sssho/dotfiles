@@ -1,38 +1,143 @@
-snippet include "include" b
+snippet bind "bind" b
+bind ${1:dst} ${2:src} ${3:inst}(${0});
+endsnippet
+
+snippet inc "include" b
 \`include "${0}"
 endsnippet
 
-snippet initial "initial begin .. end" b
+snippet def "define" b
+\`define "${0}"
+endsnippet
+
+snippet ifd "ifdef .. endif" b
+\`ifdef "${0}"
+\`endif
+endsnippet
+
+snippet ini "initial begin .. end" b
 initial begin
     ${0}
 end
 endsnippet
 
-snippet module "module ... endmodule" b
-module ${1: name};
+snippet pack "package ... endpackage" b
+package ${1:name};
+    ${0}
+endpackage
+endsnippet
+
+snippet modu "module ... endmodule" b
+module ${1:name};
     ${0}
 endmodule
 endsnippet
 
-snippet function "function ... endfunction" b
-function ${1:void} ${2:funcname}(${3});
+snippet always "always ... end" b
+always @(posedge clk) begin
+    ${0}
+end
+endsnippet
+
+snippet forever "forever ... end" b
+forever begin
+    ${0}
+end
+endsnippet
+
+snippet case "case ... endcase" b
+case (${1:cond})
+    /*cond*/:
+    default:
+endcase
+endsnippet
+
+snippet inte "interface ... endinterface" b
+interface ${1:name};
+    ${0}
+endinterface
+endsnippet
+
+snippet gen "generate ... endgenerate" b
+generate
+    ${0}
+endgenerate
+endsnippet
+
+snippet fun "function ... endfunction" b
+function automatic ${1:void} ${2:funcname}(${3});
     ${0}
 endfunction
 endsnippet
 
-snippet repeat "repeat" b
+snippet fork "fork .. join" b
+fork
+    ${0}
+join
+endsnippet
+
+snippet forka "fork .. join_any" b
+fork
+    ${0}
+join_any
+endsnippet
+
+snippet forkn "fork .. join_none" b
+fork
+    ${0}
+join_none
+endsnippet
+
+snippet forkw "wait fork example" b
+task do_test;
+    fork
+        do_something0();
+        do_something1();
+    join_any
+    fork
+        do_something2();
+        do_something3();
+    join_none
+    wait fork; // block until 0, 1, 2, 3 complete
+endtask
+endsnippet
+
+snippet forkd "disable fork example" b
+task get_first;
+    fork
+        do_something0();
+        do_something1();
+        do_something2();
+    join_any
+    disable fork;
+endtask
+endsnippet
+
+snippet stru "struct" b
+typedef struct {
+    ${0}
+} ${1:typename};
+endsnippet
+
+snippet enum "enum" b
+typedef enum int {
+    ${0}
+} ${1:typename};
+endsnippet
+
+snippet rep "repeat" b
 repeat(${1:10}) begin
     ${0}
 end
 endsnippet
 
 snippet for "for loop" b
-for (${1:i} = ${2:0}; $1 < ${3}; $1++) {
+for (int ${1:i} = ${2:0}; $1 < ${3}; $1++) begin
     ${0}
-}
+end
 endsnippet
 
-snippet foreach "foreach" b
+snippet fore "foreach" b
 foreach (${1:array}[${2:i}]) begin
     ${0}  // $1[$2]
 end
@@ -44,21 +149,46 @@ if (${1:cond}) begin
 end
 endsnippet
 
-snippet ifelse "if else" b
+snippet ife "if else" b
 if (${1:cond}) begin
     ${0}
 end else begin
 end
 endsnippet
 
-snippet posedge "posedge"
+snippet pos "posedge"
 @(posedge ${1:clk})${0}
 endsnippet
 
-snippet constraint "constraint" b
+snippet con "constraint" b
 constraint ${1:constname} {
     ${0}
 }
+endsnippet
+
+snippet pro "property .. endproperty" b
+property ${1:name};
+    ${0}
+endproperty
+endsnippet
+
+snippet proe "property example" b
+property sample;
+    @(posedge clk disable iff reset_n)
+        $rose(valid) |=> ack;
+endproperty
+endsnippet
+
+snippet seq "sequence .. endsequence" b
+sequence ${1:name};
+    ${0}
+endsequence
+endsnippet
+
+snippet seqe "sequence example" b
+sequence s(x, y);
+    x ##1 y;
+endsequence
 endsnippet
 
 snippet void "void`" b
@@ -67,6 +197,26 @@ endsnippet
 
 snippet cast "$cast" b
 $cast(${1:dst}, ${2:src});
+endsnippet
+
+snippet disp "$display" b
+$display("${0}");
+endsnippet
+
+snippet sfor "$sformatf" b
+$sformatf("${0}", );
+endsnippet
+
+snippet time "$realtime" b
+$realtime
+endsnippet
+
+snippet fat "$fatal" b
+$fatal(${0});
+endsnippet
+
+snippet fin "$finish" b
+$finish(${0});
 endsnippet
 
 snippet filewrite "write somethng to file" b

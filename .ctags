@@ -1,4 +1,0 @@
---recurse=yes
---langmap=Verilog:.sv.svh.sva
---regex-verilog=/class[ \t]+([a-zA-Z_0-9]+)/\1/,class/
---regex-verilog=/function[ \t]+[a-zA-Z_0-9]+[ \t]+([a-zA-Z_0-9]+)/\1/,function/

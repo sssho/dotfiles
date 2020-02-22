@@ -4,7 +4,6 @@ targets=".aliases
 .bash_profile
 .bashrc
 .clang-format
-.ctags
 .dir_colors
 .editorconfig
 .emacs.d

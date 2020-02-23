@@ -44,11 +44,7 @@ setup_py_virtualenv() {
     $venvbin "$venv" || { echo "$venv failed"; return 1; }
 
     # Install basic plugins
-    "$venv/bin/pip3" install flake8 flake8-isort flake8-docstrings black pytest isort pylint mypy
-
-    # For deoplete, some python modules are required
-    # https://github.com/Shougo/deoplete.nvim#requirements
-    "$venv/bin/pip3" install pynvim jedi
+    "$venv/bin/pip3" install flake8 flake8-isort flake8-docstrings black pytest isort pylint mypy ipython
 
     grep "$venv/bin/activate" "$HOME/.pyenvs" >& /dev/null || echo "$venv/bin/activate" >> "$HOME/.pyenvs"
 }

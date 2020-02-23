@@ -108,7 +108,7 @@ install_local_shellcheck() {
     tar xf shellcheck-stable.linux.x86_64.tar.xz
 
     [ -d "$bindir" ] || mkdir -p "$bindir"
-    cp ./shellcheck-stable/shellcheck "$installdir/bin"
+    cp ./shellcheck-stable/shellcheck "$bindir"
 
     [ -x "$target" ] || return 1
 }
@@ -265,3 +265,4 @@ install_local_vimplug "$localdir" || { echo "vimplug install failed"; exit 1; }
 install_local_zplug "$localdir" || { echo "zplug install failed"; exit 1; }
 install_local_ctags "$localdir" || { echo "ctags install failed"; exit 1; }
 install_local_gtags "$localdir" || { echo "gtags install failed"; exit 1; }
+install_local_shellcheck "$localdir" || { echo "shellcheck install failed"; exit 1; }

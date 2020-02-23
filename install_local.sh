@@ -200,12 +200,22 @@ install_local_ctags() {
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
 
-    git clone https://github.com/universal-ctags/ctags.git
+    # Install jansson to enable ctags json feature
+    wget http://www.digip.org/jansson/releases/jansson-2.12.tar.gz
+    tar xf jansson-2.12.tar.gz
 
+    (
+        cd jansson-2.12 || return 1
+
+        ./configure --prefix="$installdir"
+        make && make install
+    ) || return 1
+
+    git clone https://github.com/universal-ctags/ctags.git --depth=1
     cd ./ctags || return 1
 
     ./autogen.sh
-    ./configure --prefix="$installdir"
+    JANSSON_CFLAGS=-I"$installdir/include" JANSSON_LIBS="-Wl,-rpath,$installdir/lib -L$installdir/lib -ljansson" ./configure --prefix="$installdir"
     make && make install
 
     [ -x "$target" ] || return 1

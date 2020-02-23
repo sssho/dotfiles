@@ -7,12 +7,15 @@ yum -y install xauth # to enable x11forwarding
 yum -y install zlib-devel # pythoh zgip
 yum -y install openssl-devel # python pip
 yum -y install readline-devel # python shell keybind
+yum -y install libffi-devel # python 3.7 ->
 yum -y install ncurses-devel # zsh, tmux
 yum -y install libevent-devel # tmux
 yum-builddep -y vim-X11 # vim (clipboard, clientserver)
 yum -y install libXmu-devel.x86_64 # xclip
 
 yum -y install tree
+
+sed -e 's/#\(PermitRootLogin\) yes/\1 no/' -e 's/#\(PubkeyAuthentication yes\)/\1/' -e 's/#\(AllowAgentForwarding yes\)/\1/' -i /etc/ssh/sshd_config
 
 timedatectl set-timezone Asia/Tokyo
 

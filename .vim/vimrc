@@ -32,9 +32,13 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 Plug 'mattn/vim-goimports'
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 filetype plugin indent on
+
+" Vista
+let g:vista_default_executive = 'ctags'
 
 " lsp
 " Disable code linting by lsp, use ALE instead.

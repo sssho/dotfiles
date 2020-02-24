@@ -5,18 +5,9 @@ if ! which fzf &> /dev/null; then
     return 1
 fi
 
-function fzf_select_history() {
-    BUFFER=$(fc -l -n 1 | awk '!a[$0]++' | fzf --tac --no-sort --prompt "history> ")
-    CURSOR=$#BUFFER # move cursor to end of buffer
-    zle reset-prompt
-}
-
 if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H --exclude ".git" --exclude ".svn" --exclude "__pycache__"'
 fi
-
-zle -N fzf_select_history
-bindkey '^R' fzf_select_history
 
 function generic_filter() {
     local selected

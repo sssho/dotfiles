@@ -20,11 +20,11 @@ function generic_filter() {
 }
 alias -g F='|generic_filter'
 
-function agf() {
+function rgf() {
     local selected
     local dst
 
-    selected=$(ag --noheading --nobreak --nonumbers $@ | fzf --ansi)
+    selected=$(rg --hidden --no-heading --color always "$@" | fzf --no-sort --ansi)
 
     if [ -n "$selected" ]; then
         dst=$(echo "$selected" | awk -F: '{print $1}')
@@ -32,21 +32,48 @@ function agf() {
     fi
 }
 
+# Go to any directory visited before
 function goto() {
-    local dst=$(cdr -l | awk '{ print $2 }' | \
-                fzf --no-sort --prompt='Where do you go?> ')
+    local dst_selected=$(cdr -l | awk '{print $2}' | \
+                fzf --no-sort --prompt="Select dir> ")
+    local dst=$(eval readlink -e "$dst_selected")
 
-    if [ -n "$dst" ]; then
-        cd $(eval echo $dst)
-    fi
+    [ -d "$dst" ] || return 1
+
+    cd "$dst"
 }
 
-function pysel() {
-    if [[ ! -f ~/.pyenvs ]]; then
-        return 1
-    fi
+# Go to project directory
+function pgo() {
+    [ -f ~/.projdirs ] || return 1
 
-    local pyenv=$(cat ~/.pyenvs | fzf --prompt="Which python??> ")
+    local dst_selected=$(cat ~/.projdirs | fzf --prompt="Select project dir> ")
+    local dst=$(eval readlink -e "$dst_selected")
+
+    [ -d "$dst" ] || return 1
+
+    cd "$dst"
+}
+
+# Go to another running shell's work directory
+function sgo() {
+    local dst_selected=$(
+        pgrep zsh | \
+        sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
+        xargs -L 1 ls -l | awk '{print $11}' | \
+        fzf --prompt="Select working dir> ")
+    local dst=$(eval readlink -e "$dst_selected")
+
+    [ -d "$dst" ] || return 1
+
+    cd "$dst"
+}
+
+# Select python virtual env
+function pysel() {
+    [ -f ~/.pyenvs ] || return 1
+
+    local pyenv=$(cat ~/.pyenvs | fzf --no-sort --prompt="Select python venv> ")
     local pyenv2=$(eval echo "${pyenv}")
 
     if [ -f "$pyenv2" ]; then
@@ -55,17 +82,6 @@ function pysel() {
         fi
         echo "source $pyenv2"
         source "$pyenv2"
-    fi
-}
-
-function sgo() {
-    local dst=$(pgrep zsh | \
-                sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
-                xargs -L 1 ls -l | awk '{print $11}' | \
-                fzf --prompt='Working directories> ')
-
-    if [ -n "$dst" ]; then
-        cd "$dst"
     fi
 }
 

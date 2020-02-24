@@ -61,6 +61,7 @@ function sgo() {
         pgrep zsh | \
         sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
         xargs -L 1 ls -l | awk '{print $11}' | \
+        sort | uniq | \
         fzf --prompt="Select working dir> ")
     local dst=$(eval readlink -e "$dst_selected")
 

@@ -8,7 +8,10 @@ install_local_python() {
     local pythondir="${installdir}/python/$version"
     local target="$pythondir/bin/python3"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
@@ -34,19 +37,25 @@ setup_py_virtualenv() {
 
     local venvbin="$pythondir/$version/bin/virtualenv"
 
-    [ -x "$venvbin" ] || { echo "$venvbin not found"; return 1; }
+    [ -x "$venvbin" ] || {
+        echo "$venvbin not found"
+        return 1
+    }
 
     # Create main venv
     local venv="$pythondir/$venvname"
 
     [ -d "$venv" ] && { echo "$venv already exists", return 0; }
 
-    $venvbin "$venv" || { echo "$venv failed"; return 1; }
+    $venvbin "$venv" || {
+        echo "$venv failed"
+        return 1
+    }
 
     # Install basic plugins
     "$venv/bin/pip3" install flake8 flake8-isort flake8-docstrings black pytest isort pylint mypy ipython
 
-    grep "$venv/bin/activate" "$HOME/.pyenvs" >& /dev/null || echo "$venv/bin/activate" >> "$HOME/.pyenvs"
+    grep "$venv/bin/activate" "$HOME/.pyenvs" >&/dev/null || echo "$venv/bin/activate" >>"$HOME/.pyenvs"
 }
 
 install_local_go() {
@@ -55,7 +64,10 @@ install_local_go() {
     local srcdir="${installdir}/src"
     local target="${installdir}/go/bin/go"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
 
@@ -72,7 +84,10 @@ install_local_rust() {
     local srcdir="${installdir}/src"
     local target="${installdir}/bin/cargo"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
@@ -95,7 +110,10 @@ install_local_shellcheck() {
     local bindir="${installdir}/bin"
     local target="${bindir}/shellcheck"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
@@ -112,8 +130,16 @@ install_local_shellcheck() {
 install_local_fzf() {
     local target="$HOME/.fzf/bin/fzf"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
-    [ -d "$HOME/.fzf" ] && { echo "$HOME/.fzf already exists"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
+
+    [ -d "$HOME/.fzf" ] && {
+        echo "$HOME/.fzf already exists"
+        return 0
+    }
+
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --all
 
@@ -127,7 +153,10 @@ install_local_vim() {
     local srcdir="${installdir}/src"
     local target="${installdir}/bin/vim"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
@@ -151,13 +180,13 @@ install_local_vim() {
     # --with-x, --enable-gui: to enable clipboard, clientserver
     # --enable-python3interp, --with-python3-config-dir: to enable python3
     PATH="${pybindir}:$PATH" \
-          LDFLAGS="-L${pylibdir} -Xlinker -export-dynamic" \
-          ./configure --prefix="$installdir" \
-          --enable-fail-if-missing \
-          --with-x \
-          --enable-gui=auto \
-          --enable-python3interp=yes \
-          --with-python3-config-dir="$pyconfdir"
+        LDFLAGS="-L${pylibdir} -Xlinker -export-dynamic" \
+        ./configure --prefix="$installdir" \
+        --enable-fail-if-missing \
+        --with-x \
+        --enable-gui=auto \
+        --enable-python3interp=yes \
+        --with-python3-config-dir="$pyconfdir"
 
     make && make install
 
@@ -167,7 +196,10 @@ install_local_vim() {
 install_local_zplug() {
     local target="$HOME/.zplug"
 
-    [ -d "$target" ] && { echo "$target already installed"; return 0; }
+    [ -d "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
@@ -177,7 +209,10 @@ install_local_zplug() {
 install_local_vimplug() {
     local target="$HOME/.vim/autoload/plug.vim"
 
-    [ -e "$target" ] && { echo "$target already installed"; return 0; }
+    [ -e "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -191,7 +226,10 @@ install_local_ctags() {
     local srcdir="${installdir}/src"
     local target="${installdir}/bin/ctags"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
@@ -223,7 +261,10 @@ install_local_gtags() {
     local srcdir="${installdir}/src"
     local target="${installdir}/bin/gtags"
 
-    [ -x "$target" ] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     [ -d "$srcdir" ] || mkdir -p "$srcdir"
     cd "$srcdir" || return 1
@@ -235,7 +276,10 @@ install_local_gtags() {
 
     local ctagsbin="$installdir/bin/ctags"
 
-    [ -x "$ctagsbin" ] || { echo "$ctagsbin not found."; return 1; }
+    [ -x "$ctagsbin" ] || {
+        echo "$ctagsbin not found."
+        return 1
+    }
 
     ./configure --prefix="$installdir" --with-universal-ctags="$ctagsbin"
     make && make install
@@ -248,17 +292,60 @@ readonly pyversion="3.6.10"
 
 export PATH="$localdir/bin:$PATH"
 
-install_local_python "$localdir" "$pyversion" \
-    || { echo "python install failed"; exit 1; }
-setup_py_virtualenv "$localdir/python" "$pyversion" "${pyversion}-main" \
-    || { echo "venv setup failed"; exit 1; }
-install_local_go "$localdir" || { echo "go install failed"; exit 1; }
-install_local_rust "$localdir" || { echo "rust install failed"; exit 1; }
-install_local_fzf "$localdir" || { echo "fzf install failed"; exit 1; }
-install_local_vim "$localdir" "$localdir/python/$pyversion" \
-    || { echo "vim install failed"; exit 1; }
-install_local_vimplug "$localdir" || { echo "vimplug install failed"; exit 1; }
-install_local_zplug "$localdir" || { echo "zplug install failed"; exit 1; }
-install_local_ctags "$localdir" || { echo "ctags install failed"; exit 1; }
-install_local_gtags "$localdir" || { echo "gtags install failed"; exit 1; }
-install_local_shellcheck "$localdir" || { echo "shellcheck install failed"; exit 1; }
+install_local_python "$localdir" "$pyversion" ||
+    {
+        echo "python install failed"
+        exit 1
+    }
+
+setup_py_virtualenv "$localdir/python" "$pyversion" "${pyversion}-main" ||
+    {
+        echo "venv setup failed"
+        exit 1
+    }
+
+install_local_go "$localdir" || {
+    echo "go install failed"
+    exit 1
+}
+
+install_local_rust "$localdir" || {
+    echo "rust install failed"
+    exit 1
+}
+
+install_local_fzf "$localdir" || {
+    echo "fzf install failed"
+    exit 1
+}
+
+install_local_vim "$localdir" "$localdir/python/$pyversion" ||
+    {
+        echo "vim install failed"
+        exit 1
+    }
+
+install_local_vimplug "$localdir" || {
+    echo "vimplug install failed"
+    exit 1
+}
+
+install_local_zplug "$localdir" || {
+    echo "zplug install failed"
+    exit 1
+}
+
+install_local_ctags "$localdir" || {
+    echo "ctags install failed"
+    exit 1
+}
+
+install_local_gtags "$localdir" || {
+    echo "gtags install failed"
+    exit 1
+}
+
+install_local_shellcheck "$localdir" || {
+    echo "shellcheck install failed"
+    exit 1
+}

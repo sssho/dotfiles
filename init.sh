@@ -3,14 +3,14 @@
 yum -y update
 yum -y group install 'Development Tools'
 
-yum -y install xauth # to enable x11forwarding
-yum -y install zlib-devel # pythoh zgip
-yum -y install openssl-devel # python pip
-yum -y install readline-devel # python shell keybind
-yum -y install libffi-devel # python 3.7 ->
-yum -y install ncurses-devel # zsh, tmux
-yum -y install libevent-devel # tmux
-yum-builddep -y vim-X11 # vim (clipboard, clientserver)
+yum -y install xauth               # to enable x11forwarding
+yum -y install zlib-devel          # pythoh zgip
+yum -y install openssl-devel       # python pip
+yum -y install readline-devel      # python shell keybind
+yum -y install libffi-devel        # python 3.7 ->
+yum -y install ncurses-devel       # zsh, tmux
+yum -y install libevent-devel      # tmux
+yum-builddep -y vim-X11            # vim (clipboard, clientserver)
 yum -y install libXmu-devel.x86_64 # xclip
 
 yum -y install tree
@@ -25,7 +25,10 @@ install_xclip() {
     local srcname="xclip-${version}"
     local target="${installdir}/bin/xclip"
 
-    [[ -x "$target" ]] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     cd "$installdir/src" || return 1
 
@@ -36,7 +39,7 @@ install_xclip() {
     ./configure --prefix="$installdir"
     make && make install
 
-    [[ -x "$target" ]] || return 1
+    [ -x "$target" ] || return 1
 }
 
 install_zsh() {
@@ -44,7 +47,10 @@ install_zsh() {
     local version="zsh-5.7.1"
     local target="${installdir}/bin/zsh"
 
-    [[ -x "$target" ]] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     cd "$installdir/src" || return 1
 
@@ -54,10 +60,10 @@ install_zsh() {
     ./configure --prefix="$installdir" --with-tcsetpgrp
     make && make install
 
-    [[ -x "$target" ]] || return 1
+    [ -x "$target" ] || return 1
 
-    if ! grep "$target" /etc/shells > /dev/null ; then
-        echo "$target" >> /etc/shells
+    if ! grep "$target" /etc/shells >/dev/null; then
+        echo "$target" >>/etc/shells
     fi
 }
 
@@ -65,7 +71,10 @@ install_tmux() {
     local installdir="/usr/local"
     local target="${installdir}/bin/tmux"
 
-    [[ -x "$target" ]] && { echo "$target already installed"; return 0; }
+    [ -x "$target" ] && {
+        echo "$target already installed"
+        return 0
+    }
 
     cd "$installdir/src" || return 1
 
@@ -75,9 +84,20 @@ install_tmux() {
     ./configure --prefix="$installdir"
     make && make install
 
-    [[ -x "$target" ]] || return 1
+    [ -x "$target" ] || return 1
 }
 
-install_xclip || { echo "zclip install failed"; exit 1; }
-install_zsh || { echo "zsh install failed"; exit 1; }
-install_tmux || { echo "tmux install failed"; exit 1; }
+install_xclip || {
+    echo "zclip install failed"
+    exit 1
+}
+
+install_zsh || {
+    echo "zsh install failed"
+    exit 1
+}
+
+install_tmux || {
+    echo "tmux install failed"
+    exit 1
+}

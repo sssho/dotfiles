@@ -95,7 +95,7 @@ fork
 join_none
 endsnippet
 
-snippet forkw "wait fork example" b
+snippet demo-forkw "wait fork example" b
 task do_test;
     fork
         do_something0();
@@ -109,7 +109,7 @@ task do_test;
 endtask
 endsnippet
 
-snippet forkd "disable fork example" b
+snippet demo-forkd "disable fork example" b
 task get_first;
     fork
         do_something0();
@@ -179,7 +179,7 @@ property ${1:name};
 endproperty
 endsnippet
 
-snippet proe "property example" b
+snippet demo-property "property example" b
 property sample;
     @(posedge clk disable iff reset_n)
         $rose(valid) |=> ack;
@@ -192,7 +192,7 @@ sequence ${1:name};
 endsequence
 endsnippet
 
-snippet seqe "sequence example" b
+snippet demo-sequence "sequence example" b
 sequence s(x, y);
     x ##1 y;
 endsequence
@@ -226,7 +226,7 @@ snippet fin "$finish" b
 $finish(${0});
 endsnippet
 
-snippet filewrite "write somethng to file" b
+snippet demo-filewrite "write somethng to file" b
 int ofp;
 
 ofp = $fopen("outfile.csv", "w");

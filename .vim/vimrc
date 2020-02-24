@@ -133,7 +133,7 @@ nnoremap K :<C-u>LspHover<CR>
 nnoremap <Leader>r :<C-u>LspRename<CR>
 nnoremap <Leader>n :<C-u>LspReferences<CR>
 nnoremap <Leader>f :<C-u>LspDocumentDiagnostics<CR>
-nnoremap <Leader>B :<C-u>LspDocumentFormat<CR>
+nnoremap <Leader>F :<C-u>LspDocumentFormat<CR>
 
 " cd %:h when opening a file
 function! s:ChangeCurrentDirectory()

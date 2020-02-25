@@ -16,8 +16,9 @@ alias l='less'
 #alias grep='grep --color=auto --binary-files=without-match --directories=recurse --exclude-dir=.svn --exclude-dir=.git'
 
 alias g='git'
+alias s='git status -s'
 alias m='make'
-alias sc='screen'
+alias c='make clean'
 
 alias vs='vim --servername HOGE'
 alias v='vim --servername HOGE --remote'

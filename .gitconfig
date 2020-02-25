@@ -7,18 +7,18 @@
 	status = auto
 	branch = auto
 [alias]
-	l = log
-	s = status
+	l = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+	ll = log --oneline --name-status
+	s = status -s
+	ss = status
 	d = diff
 	b = branch
 	co = checkout
 	cm = commit
 	ls = ls-files
-	ln = log --name-status
 	a = add
 	p = push
 	f = fetch
 	m = merge
-	lo = log --oneline
 [fetch]
 	prune = true

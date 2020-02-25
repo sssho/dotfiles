@@ -10,13 +10,11 @@ if which fd &> /dev/null; then
 fi
 
 function generic_filter() {
-    local selected
+    local selected=$(fzf < /dev/stdin)
 
-    selected=$(fzf < /dev/stdin)
+    [ -z "$selected" ] && return 0
 
-    if [ -n "$selected" ]; then
-        print -z -- "$selected"
-    fi
+    print -z -- "$selected"
 }
 alias -g F='|generic_filter'
 
@@ -26,17 +24,20 @@ function rgf() {
 
     selected=$(rg --hidden --no-heading --color always "$@" | fzf --no-sort --ansi)
 
-    if [ -n "$selected" ]; then
-        dst=$(echo "$selected" | awk -F: '{print $1}')
-        print -z "$dst"
-    fi
+    [ -z "$selected" ] && return 0
+
+    dst=$(echo "$selected" | awk -F: '{print $1}')
+    print -z "$dst"
 }
 
 # Go to any directory visited before
 function goto() {
-    local dst_selected=$(cdr -l | awk '{print $2}' | \
+    local selected=$(cdr -l | awk '{print $2}' | \
                 fzf --no-sort --prompt="Select dir> ")
-    local dst=$(eval readlink -e "$dst_selected")
+
+    [ -z "$selected" ] && return 0
+
+    local dst=$(eval readlink -e "$selected")
 
     [ -d "$dst" ] || return 1
 
@@ -47,8 +48,11 @@ function goto() {
 function pgo() {
     [ -f ~/.projdirs ] || return 1
 
-    local dst_selected=$(cat ~/.projdirs | fzf --prompt="Select project dir> ")
-    local dst=$(eval readlink -e "$dst_selected")
+    local selected=$(cat ~/.projdirs | fzf --prompt="Select project dir> ")
+
+    [ -z "$selected" ] && return 0
+
+    local dst=$(eval readlink -e "$selected")
 
     [ -d "$dst" ] || return 1
 
@@ -57,13 +61,16 @@ function pgo() {
 
 # Go to another running shell's work directory
 function sgo() {
-    local dst_selected=$(
+    local selected=$(
         pgrep zsh | \
         sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
         xargs -L 1 ls -l | awk '{print $11}' | \
         sort | uniq | \
         fzf --prompt="Select working dir> ")
-    local dst=$(eval readlink -e "$dst_selected")
+
+    [ -z "$selected" ] && return 0
+
+    local dst=$(eval readlink -e "$selected")
 
     [ -d "$dst" ] || return 1
 
@@ -74,16 +81,20 @@ function sgo() {
 function pysel() {
     [ -f ~/.pyenvs ] || return 1
 
-    local pyenv=$(cat ~/.pyenvs | fzf --no-sort --prompt="Select python venv> ")
-    local pyenv2=$(eval echo "${pyenv}")
+    local selected=$(cat ~/.pyenvs | fzf --no-sort --prompt="Select python venv> ")
 
-    if [ -f "$pyenv2" ]; then
-        if which deactivate &> /dev/null; then
-            deactivate
-        fi
-        echo "source $pyenv2"
-        source "$pyenv2"
+    [ -z "$selected" ] && return 0
+
+    local pyenv=$(eval echo "${selected}")
+
+    if [ -f "$pyenv" ] || return 1
+
+    if which deactivate &> /dev/null; then
+        deactivate
     fi
+
+    echo "source $pyenv"
+    source "$pyenv"
 }
 
 _gen_fzf_default_opts() {

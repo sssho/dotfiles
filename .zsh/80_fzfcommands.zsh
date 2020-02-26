@@ -97,6 +97,18 @@ function pysel() {
     source "$pyenv"
 }
 
+# Select git add target files by fzf
+function ga() {
+    local selected=$(git status -s | fzf -m --no-sort)
+
+    [ -z "selected" ] && return 0
+
+    local target_files=$(echo "$selected" | awk '{print $2}' | tr '\n' ' ')
+
+    echo "git add $target_files"
+    git add ${=target_files}
+}
+
 _gen_fzf_default_opts() {
     local base03="234"
     local base02="235"

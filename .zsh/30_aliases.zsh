@@ -2,10 +2,6 @@ if [[ -r ~/.aliases ]]; then
     source ~/.aliases
 fi
 
-if [[ -r ~/.aliases.local ]]; then
-    source ~/.aliases.local
-fi
-
 alias f='ls -1 *(.)'
 alias fl='ls -l1 *(.)'
 alias d='ls -d1 *(/)'

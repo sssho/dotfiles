@@ -22,3 +22,7 @@ export LESSCHARSET=utf-8
 export GOPATH=$HOME/project/go
 [ ! -d "$HOME/project/go" ] && mkdir -p "$HOME/project/go"
 export PATH=${GOPATH}/bin:$PATH
+
+if [[ -r "$HOME/.exports.local" ]]; then
+    source "$HOME/.exports.local"
+fi

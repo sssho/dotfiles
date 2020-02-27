@@ -14,7 +14,7 @@ alias -g X='| xargs'
 
 if which xclip &> /dev/null; then
     alias -g C='| xclip -selection c'
-    alias cb='xclip -o'
+    alias puts='print -z $(xclip -o -selection c)'
 fi
 
 if which rg &> /dev/null; then

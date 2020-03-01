@@ -1,4 +1,3 @@
-# Locale
 export LANG=en_US.UTF-8
 
 export TERM=xterm-256color
@@ -10,10 +9,8 @@ if [[ -x /usr/bin/dircolors ]]; then
     fi
 fi
 
-# Editor
 export EDITOR="vim"
 
-# Pager
 export PAGER=less
 export LESS="-R -M -i -S -X"
 export LESSCHARSET=utf-8

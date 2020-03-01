@@ -23,6 +23,6 @@ export GOPATH=$HOME/project/go
 [ ! -d "$HOME/project/go" ] && mkdir -p "$HOME/project/go"
 export PATH=${GOPATH}/bin:$PATH
 
-if [[ -r "$HOME/.exports.local" ]]; then
-    source "$HOME/.exports.local"
+if [[ -r "$HOME/.config/$USER/exports.local" ]]; then
+    source "$HOME/.config/$USER/exports.local"
 fi

@@ -1,5 +1,5 @@
-if [[ -r ~/.aliases ]]; then
-    source ~/.aliases
+if [[ -r "$HOME/.config/$USER/aliases" ]]; then
+    source "$HOME/.config/$USER/aliases"
 fi
 
 alias -g L='|& less -XR'

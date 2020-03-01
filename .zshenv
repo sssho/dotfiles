@@ -13,8 +13,8 @@ fpath=(~/.zsh/Completion(N-/)
 autoload -Uz compinit && compinit
 
 # Enviroment Variables
-if [[ -f ~/.exports ]]; then
-    source ~/.exports
+if [[ -r "$HOME/.config/$USER/exports" ]]; then
+    source "$HOME/.config/$USER/exports"
 fi
 
 # History
@@ -25,6 +25,6 @@ export SAVEHIST="$HISTSIZE"
 # Use '/' as delimitor when backward-kill-word
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-if [[ -f ~/.zshenv.local ]]; then
-    source ~/.zshenv.local
+if [[ -r "$HOME/.config/$USER/zshenv.local" ]]; then
+    source "$HOME/.config/$USER/zshenv.local"
 fi

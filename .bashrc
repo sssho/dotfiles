@@ -2,8 +2,9 @@ if [[ -r /etc/bashrc ]]; then
     source /etc/bashrc
 fi
 
-if [[ -r ~/.aliases ]]; then
-    source ~/.aliases
+if [[ -r "$HOME/.config/$USER/aliases" ]]; then
+    # shellcheck source=/dev/null
+    source "$HOME/.config/$USER/aliases"
 fi
 
 # Disable C-s and C-q
@@ -20,4 +21,5 @@ export PS1="\[\e[36m\]\u@\h \W \[\e[0m\]\\$ "
 export HISTCONTROL=ignoredups
 export HISTIGNORE=ls
 
+# shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

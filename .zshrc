@@ -20,8 +20,8 @@ else
     echo "  check -> https://github.com/zplug/zplug"
 fi
 
-if [[ -f ~/.zshrc.local ]]; then
-    source ~/.zshrc.local
+if [[ -r "$HOME/.config/$USER/zshrc.local" ]]; then
+    source "$HOME/.config/$USER/zshrc.local"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

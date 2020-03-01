@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
-targets=".aliases
-.bash_profile
+targets=".bash_profile
 .bashrc
 .clang-format
 .dir_colors
 .editorconfig
 .emacs.d
-.exports
-.flake8
 .gitconfig
 .globalrc
 .inputrc
@@ -32,6 +29,19 @@ for target in $targets; do
 
     ln -s "$here/$target" "$HOME/$target"
 done
+
+[ -d "$HOME/.config/$USER" ] || mkdir -p "$HOME/.config/$USER"
+
+targets2="aliases
+exports"
+
+for target in $targets2; do
+    original="$HOME/.config/$USER/$target"
+
+    ln -fs "$here/$target" "$original"
+done
+
+ln -fs "$here/flake8" "$HOME/.config/flake8"
 
 # Install following apps manually
 # fzf

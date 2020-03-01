@@ -46,9 +46,9 @@ function goto() {
 
 # Go to project directory
 function pgo() {
-    [ -f ~/.projdirs ] || return 1
+    [ -r "$HOME/.config/$USER/projdirs" ] || return 1
 
-    local selected=$(cat ~/.projdirs | fzf --prompt="Select project dir> ")
+    local selected=$(cat "$HOME/.config/$USER/projdirs" | fzf --prompt="Select project dir> ")
 
     [ -z "$selected" ] && return 0
 
@@ -79,9 +79,9 @@ function sgo() {
 
 # Select python virtual env
 function pysel() {
-    [ -f ~/.pyenvs ] || return 1
+    [ -f "$HOME/.config/$USER/pyenvs" ] || return 1
 
-    local selected=$(cat ~/.pyenvs | fzf --no-sort --prompt="Select python venv> ")
+    local selected=$(cat "$HOME/.config/$USER/pyenvs" | fzf --no-sort --prompt="Select python venv> ")
 
     [ -z "$selected" ] && return 0
 

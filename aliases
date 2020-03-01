@@ -40,6 +40,6 @@ if which colordiff &> /dev/null; then
     alias cdiff="colordiff -u"
 fi
 
-if [[ -r ~/.aliases.local ]]; then
-    source ~/.aliases.local
+if [[ -r "$HOME/.config/$USER/aliases.local" ]]; then
+    source "$HOME/.config/$USER/aliases.local"
 fi

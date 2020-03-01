@@ -13,14 +13,18 @@ alias rm='rm -i'
 
 alias l='less'
 
-#alias grep='grep --color=auto --binary-files=without-match --directories=recurse --exclude-dir=.svn --exclude-dir=.git'
-
 alias g='git'
+alias d='git diff'
+alias m='git commit -m'
 alias s='git status -s'
-alias m='make'
-alias c='make clean'
+alias gl='git l'
+alias yarakasi='git reset --soft HEAD^'
 
-alias vs='vim --servername HOGE'
+alias b='make build'
+alias c='make clean'
+alias r='make run'
+
+alias vims='vim --servername HOGE'
 alias v='vim --servername HOGE --remote'
 alias sunovim='vim -N -u NONE -i NONE --noplugin'
 

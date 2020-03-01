@@ -14,11 +14,10 @@
 	d = diff
 	b = branch
 	co = checkout
-	cm = commit
+	m = commit
 	ls = ls-files
 	a = add
 	p = push
 	f = fetch
-	m = merge
 [fetch]
 	prune = true

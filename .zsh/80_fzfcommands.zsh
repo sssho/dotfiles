@@ -108,6 +108,7 @@ function ga() {
     echo "git add $target_files"
     git add ${=target_files}
 }
+alias a='ga'
 
 _gen_fzf_default_opts() {
     local base03="234"

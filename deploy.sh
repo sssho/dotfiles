@@ -13,7 +13,6 @@ targets=".bash_profile
 .screenrc
 .tmux.conf
 .vim
-.zsh
 .zshenv
 .zshrc"
 
@@ -33,7 +32,8 @@ done
 [ -d "$HOME/.config/$USER" ] || mkdir -p "$HOME/.config/$USER"
 
 targets2="aliases
-exports"
+exports
+zsh"
 
 for target in $targets2; do
     original="$HOME/.config/$USER/$target"

@@ -42,11 +42,3 @@ for target in $targets2; do
 done
 
 ln -fs "$here/flake8" "$HOME/.config/flake8"
-
-# Install following apps manually
-# fzf
-# fd
-# fzf.vim
-# colordiff
-# xclip
-# vim with python3

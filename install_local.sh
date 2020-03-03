@@ -145,7 +145,7 @@ install_local_fzf() {
     }
 
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all
+    XDG_CONFIG_HOME=~/.config ~/.fzf/install --xdg --all
 
     [ -x "$target" ] || return 1
 }

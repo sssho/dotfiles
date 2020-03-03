@@ -24,4 +24,4 @@ if [[ -r "$HOME/.config/$USER/zshrc.local" ]]; then
     source "$HOME/.config/$USER/zshrc.local"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh

@@ -22,4 +22,4 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE=ls
 
 # shellcheck source=/dev/null
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash

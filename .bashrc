@@ -8,10 +8,10 @@ if [[ -r "$HOME/.config/$USER/aliases" ]]; then
 fi
 
 # Disable C-s and C-q
-stty stop undef
+[ -t 0 ] && stty stop undef
 
 # Disable C-w
-stty werase undef
+[ -t 0 ] && stty werase undef
 
 # Enable C-w for killing the word behind point to previous '/'
 bind '"\C-w": unix-filename-rubout'

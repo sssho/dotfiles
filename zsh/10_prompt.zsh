@@ -1,17 +1,14 @@
 autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats "%F{green}[%b]%f"
 
-precmd () {
-    [ -d .git ] || {
-        vcs_info_msg_0_=""
-        return 0
-    }
+function _update_vcs_info_msg() {
     vcs_info
+
+    RPROMPT="${vcs_info_msg_0_}"
 }
 
-setopt prompt_subst
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
-
-zstyle ':vcs_info:*' formats "%F{green}[%b]%f"
+add-zsh-hook precmd _update_vcs_info_msg
 
 color_end="%{[0m%}"
 PROMPT="%(?.%{%F{yellow}%}.%{%F{red}%})%n@%m {%?} %~ ${color_end}

@@ -1,6 +1,6 @@
 # https://github.com/zplug/zplug
 if [[ -f ~/.zplug/init.zsh ]]; then
-    export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
+    export ZPLUG_LOADFILE=~/.config/$USER/zsh/zplug.zsh
     source ~/.zplug/init.zsh
 
     # Install plugins if there are plugins that have not been installed

@@ -31,6 +31,7 @@ readline/inputrc
 screen/screenrc
 tmux/tmux.conf
 zsh/.zshrc
+zsh/.zshenv
 /flake8"
 
 for target in $xdgtargets; do
@@ -58,5 +59,5 @@ zsh"
 for target in $usertargets; do
     original="$XDG_CONFIG_HOME"/"$USER"/"$target"
 
-    ln -fs "$here"/"$target" "$original"
+    ln -fsT "$here"/"$target" "$original"
 done

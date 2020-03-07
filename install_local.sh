@@ -79,6 +79,9 @@ install_local_go() {
     tar -C "$installdir" -xzf "${srcdir}/go1.13.7.linux-amd64.tar.gz"
 
     [ -x "$target" ] || return 1
+
+    "$target" get golang.org/x/tools/cmd/goimports
+    "$target" get -u golang.org/x/lint/golint
 }
 
 # Install rust and fd, ripgrep

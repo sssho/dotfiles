@@ -105,6 +105,7 @@ install_local_rust() {
 
     cargo install --root "$installdir" fd-find
     cargo install --root "$installdir" ripgrep
+    cargo install --root "$installdir" bat
 }
 
 install_local_shellcheck() {

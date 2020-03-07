@@ -3,15 +3,16 @@
 yum -y update
 yum -y group install 'Development Tools'
 
-yum -y install xauth               # to enable x11forwarding
-yum -y install zlib-devel          # pythoh zgip
-yum -y install openssl-devel       # python pip
-yum -y install readline-devel      # python shell keybind
-yum -y install libffi-devel        # python 3.7 ->
-yum -y install ncurses-devel       # zsh, tmux
-yum -y install libevent-devel      # tmux
-yum-builddep -y vim-X11            # vim (clipboard, clientserver)
-yum -y install libXmu-devel.x86_64 # xclip
+yum -y install xauth                  # to enable x11forwarding
+yum -y install zlib-devel             # pythoh zgip
+yum -y install openssl-devel          # python pip
+yum -y install readline-devel         # python shell keybind
+yum -y install libffi-devel           # python 3.7 ->
+yum -y install ncurses-devel          # zsh, tmux
+yum -y install libevent-devel         # tmux
+yum-builddep -y vim-X11               # vim (clipboard, clientserver)
+yum -y install libXmu-devel.x86_64    # xclip
+yum -y install llvm-devel clang-devel # bat
 
 yum -y install tree
 

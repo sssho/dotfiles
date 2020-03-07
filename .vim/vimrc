@@ -1,4 +1,14 @@
-call plug#begin()
+if has('vim_starting')
+  if !exists($XDG_DATA_HOME)
+    let $XDG_DATA_HOME = $HOME . '/.local/share'
+  endif
+
+  if !isdirectory($XDG_DATA_HOME . '/vim')
+    call mkdir($XDG_DATA_HOME . '/vim', "p")
+  endif
+endif
+
+call plug#begin($XDG_DATA_HOME . '/vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -34,6 +44,22 @@ Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 Plug 'mattn/vim-goimports'
 Plug 'liuchengxu/vista.vim'
 call plug#end()
+
+function! s:SetViminfo() abort
+  if !exists($XDG_CACHE_HOME)
+    let $XDG_CACHE_HOME = $HOME . '/.cache'
+  endif
+
+  if !isdirectory($XDG_CACHE_HOME . '/vim')
+    call mkdir($XDG_CACHE_HOME . '/vim', "p")
+  endif
+
+  set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+endfunction
+
+if has('vim_starting')
+  call s:SetViminfo()
+endif
 
 filetype plugin indent on
 

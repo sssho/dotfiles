@@ -24,6 +24,8 @@ alias b='make build'
 alias c='make clean'
 alias r='make run'
 
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+
 alias vims='vim --servername HOGE'
 alias v='vim --servername HOGE --remote'
 alias sunovim='vim -N -u NONE -i NONE --noplugin'
@@ -40,6 +42,6 @@ if which colordiff &> /dev/null; then
     alias cdiff="colordiff -u"
 fi
 
-if [[ -r "$HOME/.config/$USER/aliases.local" ]]; then
-    source "$HOME/.config/$USER/aliases.local"
+if [[ -r "$XDG_CONFIG_HOME"/"$USER"/aliases.local ]]; then
+    source "$XDG_CONFIG_HOME"/"$USER"/aliases.local
 fi

@@ -1,6 +1,6 @@
 # https://github.com/zplug/zplug
 if [[ -f ~/.zplug/init.zsh ]]; then
-    export ZPLUG_LOADFILE=~/.config/$USER/zsh/zplug.zsh
+    export ZPLUG_LOADFILE="$XDG_CONFIG_HOME"/"$USER"/zsh/zplug.zsh
     source ~/.zplug/init.zsh
 
     # Install plugins if there are plugins that have not been installed
@@ -20,8 +20,6 @@ else
     echo "  check -> https://github.com/zplug/zplug"
 fi
 
-if [[ -r "$HOME/.config/$USER/zshrc.local" ]]; then
-    source "$HOME/.config/$USER/zshrc.local"
+if [[ -r "$ZDOTDIR"/zshrc.local ]]; then
+    source "$ZDOTDIR"/zshrc.local
 fi
-
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh

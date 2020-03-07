@@ -1,5 +1,5 @@
-if [[ -r "$HOME/.config/$USER/aliases" ]]; then
-    source "$HOME/.config/$USER/aliases"
+if [[ -r "$XDG_CONFIG_HOME"/"$USER"/aliases ]]; then
+    source "$XDG_CONFIG_HOME"/"$USER"/aliases
 fi
 
 alias -g L='|& less -XR'

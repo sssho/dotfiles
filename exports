@@ -1,11 +1,15 @@
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_DATA_HOME="$HOME"/.local/share
+
 export LANG=en_US.UTF-8
 
 export TERM=xterm-256color
 
 # ls (TERM must be set before)
 if [[ -x /usr/bin/dircolors ]]; then
-    if [[ -r ~/.dir_colors ]]; then
-        eval "$(dircolors -b ~/.dir_colors)"
+    if [[ -r "$XDG_CONFIG_HOME"/dircolors ]]; then
+        eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
     fi
 fi
 
@@ -14,14 +18,24 @@ export EDITOR="vim"
 export PAGER=less
 export LESS="-R -M -i -S -X"
 export LESSCHARSET=utf-8
+export LESSHISTFILE=-
 
 # Go
-export GOPATH=$HOME/project/go
+export GOPATH="$HOME"/project/go
 [ ! -d "$HOME/project/go" ] && mkdir -p "$HOME/project/go"
 export PATH=${GOPATH}/bin:$PATH
 
-if [[ -r "$HOME/.config/$USER/exports.local" ]]; then
-    source "$HOME/.config/$USER/exports.local"
+if [[ -r "$XDG_CONFIG_HOME"/"$USER"/exports.local ]]; then
+    source "$XDG_CONFIG_HOME"/"$USER"/exports.local
 fi
 
-export IPYTHONDIR="$HOME/.config/ipython"
+# Use XDG Standard Dirs
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy

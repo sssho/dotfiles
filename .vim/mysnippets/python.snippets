@@ -1,0 +1,42 @@
+snippet log "setup logger" b
+from logging import StreamHandler, getLogger
+
+logger = getLogger(__file__)
+logger.addHandler(StreamHandler())
+${0}
+endsnippet
+
+snippet here "add cwd to sys.path" b
+import os
+import sys
+
+here = os.path.dirname(os.path.realpath(__file__))
+
+sys.path.append(here)
+${0}
+endsnippet
+
+snippet demo-textread "read text from file" b
+def textstream(path):
+    with open(path, "r") as ifile:
+        for line in lines:
+            line = line.rstrip()
+
+            if not line:
+                continue
+
+            yield line
+endsnippet
+
+snippet demo-binread "read bindata from file" b
+from functools import partial
+
+def binstream(path):
+    with open(path, 'rb') as ifile:
+        chunk_byte = 4
+        read_chunk = partial(ifile.read, chunk_byte)
+
+        for data in iter(read_chunk, b''):
+            yield data
+${0}
+endsnippet

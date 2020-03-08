@@ -21,3 +21,5 @@
 	f = fetch
 [fetch]
 	prune = true
+[color "diff"]
+	meta = yellow ul

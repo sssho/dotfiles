@@ -1,0 +1,21 @@
+snippet setup "setup" b
+.PHONY: build
+build:
+	:${0}
+
+.PHONY: run
+run:
+	:
+
+.PHONY: test
+test:
+	:
+
+.PHONY: clean
+clean:
+	:
+endsnippet
+
+snippet pytest "run pytest" b
+python -m pytest
+endsnippet

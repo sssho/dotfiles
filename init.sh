@@ -8,6 +8,9 @@ yum -y install zlib-devel             # pythoh zgip
 yum -y install openssl-devel          # python pip
 yum -y install readline-devel         # python shell keybind
 yum -y install libffi-devel           # python 3.7 ->
+yum -y install bzip2-devel            # python
+yum -y install sqlite-devel           # python ipython
+yum -y install xz-devel               # python
 yum -y install ncurses-devel          # zsh, tmux
 yum -y install libevent-devel         # tmux
 yum-builddep -y vim-X11               # vim (clipboard, clientserver)

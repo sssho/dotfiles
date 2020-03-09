@@ -20,6 +20,10 @@ export LESS="-R -M -i -S -X"
 export LESSCHARSET=utf-8
 export LESSHISTFILE=-
 
+if [[ -z "$LESSOPEN" ]]; then
+    export LESSOPEN="|/usr/bin/lesspipe.sh %s"
+fi
+
 # Go
 export GOPATH="$HOME"/project/go
 [ ! -d "$HOME/project/go" ] && mkdir -p "$HOME/project/go"

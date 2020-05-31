@@ -24,8 +24,6 @@ Plug 'thinca/vim-quickrun'
 Plug 'altercation/vim-colors-solarized'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline', { 'tag': 'v0.10' }
-Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips', { 'tag': '3.1' }
@@ -42,7 +40,6 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 Plug 'mattn/vim-goimports'
-Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 function! s:SetViminfo() abort

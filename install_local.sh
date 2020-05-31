@@ -58,7 +58,7 @@ setup_py_virtualenv() {
     local confdir="$HOME/.config/$USER"
     [ -d "$confdir" ] || mkdir -p "$confdir"
 
-    local pyenvfile="$confdir/.pyenvs"
+    local pyenvfile="$confdir/pyenvs"
     grep "$venv/bin/activate" "$pyenvfile" >&/dev/null || echo "$venv/bin/activate" >>"$pyenvfile"
 }
 

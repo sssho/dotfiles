@@ -39,6 +39,9 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'wellle/tmux-complete.vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'mattn/vim-goimports'
 call plug#end()
 
@@ -80,6 +83,16 @@ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_opti
     \ 'name': 'ultisnips',
     \ 'whitelist': ['*'],
     \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+    \ }))
+
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'blocklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
     \ }))
 
 " quickrun

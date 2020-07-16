@@ -1,0 +1,24 @@
+snippet ifsni "if ~ endif" b
+{% if ${0} %}
+{% endif %}
+endsnippet
+
+snippet ifelse "if ~ else ~ endif" b
+{% if ${0} %}
+{% else %}
+{% endif %}
+endsnippet
+
+snippet for "for ~ endfor" b
+{% for ${0} %}
+{% endfor %}
+endsnippet
+
+snippet macro "macro ~ endmacro" b
+{% macro ${0} %}
+{% endmacro %}
+endsnippet
+
+snippet import "import" b
+{% import "${0}" as %}
+endsnippet

@@ -1,8 +1,9 @@
 snippet log "setup logger" b
-from logging import StreamHandler, getLogger
+from logging import StreamHandler, getLogger, DEBUG
 
 logger = getLogger(__file__)
 logger.addHandler(StreamHandler())
+logger.setLevel(DEBUG)
 ${0}
 endsnippet
 
@@ -39,4 +40,25 @@ def binstream(path):
         for data in iter(read_chunk, b''):
             yield data
 ${0}
+endsnippet
+
+snippet exit "sys.exit(1)" b
+__import__('sys').exit(1)
+endsnippet
+
+snippet debug "logger.debug()" b
+logger.debug(${0})
+endsnippet
+
+snippet pformat "pprint.pformat()"
+__import__('pprint').pformat(${0})
+endsnippet
+
+snippet demo-jinja2 "jinja2 setup demo" b
+from jinja2 import Environment, FileSystemLoader
+
+env = Environment(loader=FileSystemLoader("."))
+template = env.get_template("hoge.j2")
+
+print(template.render(data=data))
 endsnippet

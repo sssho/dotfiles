@@ -62,3 +62,29 @@ template = env.get_template("hoge.j2")
 
 print(template.render(data=data))
 endsnippet
+
+snippet demo-argparse "argparse demo" b
+import argparse
+
+def parse_args() -> argparse.Namespace:
+    """Parse commandline argument."""
+    parser = argparse.ArgumentParser(description="argparse sample.")
+
+    # Positional argument
+    parser.add_argument("name", help="sample name")
+    parser.add_argument("num", type=int, help="sample number")
+    parser.add_argument("seacret", metavar="S", help="sample s")
+    parser.add_argument("select", choices=["one", "two", "three"])
+
+    # Positional but not mandatory
+    parser.add_argument("filepath0", nargs="*", default=None)
+    parser.add_argument("filepath1", nargs="?", default=None)
+
+    # Optional argument
+    parser.add_argument("--opt0", default="default")
+    parser.add_argument("--opt1", dest="option1")
+    parser.add_argument("--flag0", action="store_const", const="set")
+    parser.add_argument("--flag1", action="store_true")
+
+    return parser.parse_args()
+endsnippet

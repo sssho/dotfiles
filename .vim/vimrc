@@ -147,7 +147,8 @@ let g:solarized_visibility = "low"
 let mapleader = "\<Space>"
 
 nnoremap <Leader>h :History<CR>
-nnoremap <Leader>b :Buffers<CR>
+" nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>b :FZFBufferAndCachedFiles<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>p "*p<CR>
@@ -189,3 +190,21 @@ function! s:SourceMyCompSource()
   endif
 endfunction
 call s:SourceMyCompSource()
+
+command! FZFBufferAndCachedFiles call fzf#run({
+\ 'source':  reverse(s:buffer_and_cached_files()),
+\ 'sink':    'edit',
+\ 'options': '-m -x +s',
+\ 'down':    '40%' })
+
+function! s:buffer_and_cached_files()
+  let l:buffers = map(
+  \ filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)')
+
+  if !executable('cachef')
+      return l:buffers
+  endif
+
+  return extend(
+  \ split(system('cat $(cachef --cache-file)')), buffers)
+endfunction

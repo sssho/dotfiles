@@ -11,6 +11,20 @@ if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H --exclude ".git" --exclude ".svn" --exclude "__pycache__"'
 fi
 
+function select_cache_file() {
+    if ! which cachef &> /dev/null; then
+        return 0
+    fi
+
+    local cachefile=$(cachef --cache-file)
+    local selected=$(fzf --tac --no-sort < $cachefile)
+
+    [ -z "$selected" ] && return 0
+
+    print -z -- "$selected"
+}
+alias ca='select_cache_file'
+
 function generic_filter() {
     local selected=$(fzf < /dev/stdin)
 

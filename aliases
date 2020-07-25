@@ -28,11 +28,19 @@ alias r='make run'
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 alias vims='vim --servername HOGE'
-alias v='vim --servername HOGE --remote'
+
+if which cachef &> /dev/null; then
+    alias v='(){cachef $@; vim --servername HOGE --remote $@}'
+else
+    alias v='vim --servername HOGE --remote'
+fi
+
 alias sunovim='vim -N -u NONE -i NONE --noplugin'
 
 alias em='TERM=xterm-256color emacs -nw'
 alias e='emacsclient -n'
+
+alias realpath='readlink -f'
 
 if which ag &> /dev/null; then
     # for solarized dark theme
@@ -44,7 +52,11 @@ if which colordiff &> /dev/null; then
 fi
 
 if which bat &> /dev/null; then
-    alias b="bat"
+    if which cachef &> /dev/null; then
+        alias b='(){cachef $@; bat $@}'
+    else
+        alias b="bat"
+    fi
 fi
 
 if [[ -r "$XDG_CONFIG_HOME"/"$USER"/aliases.local ]]; then

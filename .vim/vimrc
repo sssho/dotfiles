@@ -17,6 +17,7 @@ Plug 'kana/vim-smartinput'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-line'
 Plug 'bps/vim-textobj-python'
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace'
@@ -26,15 +27,15 @@ Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'SirVer/ultisnips', { 'tag': '3.1' }
+Plug 'SirVer/ultisnips', { 'tag': '3.2' }
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive', { 'tag': 'v2.5' }
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'cespare/vim-toml'
-Plug 'w0rp/ale', { 'tag': 'v2.6.0' }
+Plug 'w0rp/ale', { 'tag': 'v2.7.0' }
 Plug 'davidhalter/jedi-vim', { 'tag': '0.10.0' }
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/vim-lsp', { 'tag': 'v0.1.1' }
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'

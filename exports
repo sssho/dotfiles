@@ -43,3 +43,7 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
+
+if [[ -r "$XDG_CONFIG_HOME"/python/configure_history.py ]]; then
+    export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/configure_history.py
+fi

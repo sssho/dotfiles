@@ -32,7 +32,8 @@ screen/screenrc
 tmux/tmux.conf
 zsh/.zshrc
 zsh/.zshenv
-/flake8"
+/flake8
+python/configure_history.py"
 
 for target in $xdgtargets; do
     dstdir="$XDG_CONFIG_HOME"/$(cut -d "/" -f1 <<<"$target")

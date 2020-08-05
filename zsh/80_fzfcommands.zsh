@@ -11,6 +11,19 @@ if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H --exclude ".git" --exclude ".svn" --exclude "__pycache__"'
 fi
 
+function fzf_select_tmux_pane() {
+    local selected=$(tmux list-panes -s -F '#{window_index} #{pane_index} #{pane_current_path}' | fzf --no-sort)
+
+    local window_id  pane_id  _
+
+    [ -z "$selected" ] && return 0
+
+    read window_id pane_id _ <<<"$selected"
+
+    tmux select-window -t $window_id; tmux select-pane -t $pane_id
+}
+alias td='fzf_select_tmux_pane'
+
 function select_cache_file() {
     if ! which cachef &> /dev/null; then
         return 0

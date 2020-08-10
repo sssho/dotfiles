@@ -202,14 +202,14 @@ install_local_vim() {
 }
 
 install_local_zplug() {
-    local target="$HOME/.zplug"
+    local target="$1"/zplug
 
     [ -d "$target" ] && {
         echo "$target already installed"
         return 0
     }
 
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | ZPLUG_HOME="$target" zsh
 
     [ -d "$target" ] || return 1
 }

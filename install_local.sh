@@ -82,6 +82,7 @@ install_local_go() {
 
     "$target" get golang.org/x/tools/cmd/goimports
     "$target" get -u golang.org/x/lint/golint
+    GO111MODULE=on "$target" get mvdan.cc/sh/v3/cmd/shfmt
 }
 
 # Install rust and fd, ripgrep

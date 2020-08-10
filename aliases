@@ -61,7 +61,7 @@ if which rg &> /dev/null; then
 fi
 
 if which fd &> /dev/null; then
-    alias fd='rg --hidden -L'
+    alias fd='fd --hidden -L'
 fi
 
 if which colordiff &> /dev/null; then

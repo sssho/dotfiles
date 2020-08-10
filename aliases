@@ -56,8 +56,17 @@ if which ag &> /dev/null; then
     alias ag='ag --color --color-line-number=37 --color-match="01;31" --color-path=36'
 fi
 
+if which rg &> /dev/null; then
+    alias rg='rg --hidden -L'
+fi
+
+if which fd &> /dev/null; then
+    alias fd='rg --hidden -L'
+fi
+
 if which colordiff &> /dev/null; then
-    alias cdiff="colordiff -u"
+    alias diff="colordiff -u"
+    alias diffy="colordiff -y"
 fi
 
 if which bat &> /dev/null; then

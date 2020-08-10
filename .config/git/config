@@ -22,4 +22,4 @@
 [fetch]
 	prune = true
 [color "diff"]
-	meta = yellow ul
+	meta = magenta

@@ -297,6 +297,20 @@ install_local_gtags() {
     [ -x "$target" ] || return 1
 }
 
+install_local_colordiff() {
+    local installdir=$1
+    local srcdir="$1"/src
+
+    [ -d "$srcdir" ] || mkdir -p "$srcdir"
+    cd "$srcdir" || return 1
+
+    wget https://www.colordiff.org/colordiff-1.0.19.tar.gz
+    tar xf colordiff-1.0.19.tar.gz
+    cd colordiff-1.0.19 || return 1
+
+    make install INSTALL_DIR="$installdir"/bin MAN_DIR="$installdir"/man/man1 ETC_DIR="$installdir"/etc/colordiff || return 1
+}
+
 readonly localdir="${HOME}/local"
 readonly pyversion="3.6.10"
 
@@ -357,5 +371,10 @@ install_local_gtags "$localdir" || {
 
 install_local_shellcheck "$localdir" || {
     echo "shellcheck install failed"
+    exit 1
+}
+
+install_local_colordiff "$localdir" || {
+    echo "colordiff install failed"
     exit 1
 }

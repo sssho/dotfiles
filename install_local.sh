@@ -136,20 +136,21 @@ install_local_shellcheck() {
 }
 
 install_local_fzf() {
-    local target="$HOME/.fzf/bin/fzf"
+    local installdir="$1"/fzf
+    local target="$installdir"/bin/fzf
 
     [ -x "$target" ] && {
         echo "$target already installed"
         return 0
     }
 
-    [ -d "$HOME/.fzf" ] && {
-        echo "$HOME/.fzf already exists"
+    [ -d "$installdir" ] && {
+        echo "$installdir already exists"
         return 0
     }
 
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    XDG_CONFIG_HOME=~/.config ~/.fzf/install --xdg --key-bindings --completion --no-update-rc
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$installdir"
+    XDG_CONFIG_HOME=~/.config "$installdir"/install --xdg --key-bindings --completion --no-update-rc
 
     [ -x "$target" ] || return 1
 }

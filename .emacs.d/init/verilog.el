@@ -8,7 +8,9 @@
 (add-to-list 'auto-mode-alist '("\\.sva\\'" . verilog-mode))
 
 (custom-set-variables
-    '(verilog-auto-endcomments nil)
-    '(verilog-auto-newline nil)
-    '(verilog-auto-indent-on-newline nil)
-    '(verilog-highlight-grouping-keywords t))
+  '(verilog-auto-endcomments nil)
+  '(verilog-auto-indent-on-newline nil)
+  '(verilog-auto-newline nil)
+  '(verilog-indent-lists nil)
+  '(verilog-auto-lineup nil)
+  '(verilog-highlight-grouping-keywords t))

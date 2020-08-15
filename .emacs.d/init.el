@@ -18,6 +18,8 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(setq straight-check-for-modifications '(never))
+
 (straight-use-package 'init-loader)
 
 ;; init-loader

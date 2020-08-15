@@ -44,6 +44,9 @@
 ;; TOML
 (straight-use-package 'toml-mode)
 
+;; jinja2
+(straight-use-package 'jinja2-mode)
+
 ;; Build tool
 (straight-use-package 'cmake-mode)
 

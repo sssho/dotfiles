@@ -7,8 +7,8 @@ alias -g G='| \grep --color=always'
 alias -g S='| sed'
 alias -g X='| xargs'
 
-if which bat &> /dev/null; then
-    alias -g B='| bat'
+if which bat &> /dev/null && which cachef &> /dev/null; then
+    alias b='(){cachef $@; bat $@}'
 fi
 
 if which xclip &> /dev/null; then
@@ -18,4 +18,12 @@ fi
 
 if which rg &> /dev/null; then
     alias -g R='| rg'
+fi
+
+if which cachef &> /dev/null; then
+    alias v='(){cachef $@; vim --servername HOGE --remote $@}'
+fi
+
+if which cachef &> /dev/null; then
+    alias e='(){cachef $@; emacsclient -n $@}'
 fi

@@ -19,11 +19,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-if which cachef &> /dev/null; then
-    alias l='(){cachef $@; less $@}'
-else
-    alias l='less'
-fi
+alias l='less'
 
 alias g='git'
 alias d='git diff'
@@ -32,30 +28,20 @@ alias s='git status -s'
 alias gl='git l'
 alias yarakasi='git reset --soft HEAD^'
 
-alias build='make build'
-alias c='make clean'
-alias t='make test'
-alias r='make run'
+# Enable if often use make
+# alias build='make build'
+# alias c='make clean'
+# alias t='make test'
+# alias r='make run'
 
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 alias vims='vim --servername HOGE'
-
-if which cachef &> /dev/null; then
-    alias v='(){cachef $@; vim --servername HOGE --remote $@}'
-else
-    alias v='vim --servername HOGE --remote'
-fi
-
+alias v='vim --servername HOGE --remote'
 alias sunovim='vim -N -u NONE -i NONE --noplugin'
 
 alias em='TERM=xterm-256color emacs -nw'
-
-if which cachef &> /dev/null; then
-    alias e='(){cachef $@; emacsclient -n $@}'
-else
-    alias e='emacsclient -n'
-fi
+alias e='emacsclient -n'
 
 alias realpath='readlink -f'
 
@@ -65,24 +51,20 @@ if which ag &> /dev/null; then
 fi
 
 if which rg &> /dev/null; then
-    alias rg="rg --hidden -L -g '!.git' -g '!.svn'"
+    alias rg="rg --hidden -L -g '!.git' -g '!.svn' -g '!.cache' -g '!__pycache__'"
 fi
 
 if which fd &> /dev/null; then
-    alias fd='fd --hidden -L -E .git -E .svn'
+    alias fd='fd -H -L -E .git -E .svn -E .cache -E __pycache_'
+fi
+
+if which bat &> /dev/null; then
+    alias b="bat"
 fi
 
 if which colordiff &> /dev/null; then
     alias diff="colordiff -u"
     alias diffy="colordiff -y"
-fi
-
-if which bat &> /dev/null; then
-    if which cachef &> /dev/null; then
-        alias b='(){cachef $@; bat $@}'
-    else
-        alias b="bat"
-    fi
 fi
 
 if [[ -r "$XDG_CONFIG_HOME"/user/aliases.local ]]; then

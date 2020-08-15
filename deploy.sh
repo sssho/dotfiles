@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source exports
+source ./.config/user/exports
 
 [ ! -d "$XDG_CONFIG_HOME" ] && mkdir -p "$XDG_CONFIG_HOME"
 [ ! -d "$XDG_DATA_HOME" ] && mkdir -p "$XDG_DATA_HOME"
@@ -14,58 +14,35 @@ readonly targets=".bash_profile
 
 readonly here=$(pwd)
 
-for target in $targets; do
-    original="$HOME"/"$target"
+function update_symlink() {
+    local src="$1"
+    local dst="$2"
 
-    if [[ -e "$original" ]]; then
-        echo remove "$original"
-        rm -rf "$original"
+    if [[ ! -e "$dst" || -L "$dst" ]]; then
+        echo update symlink "$dst"
+        ln -sf "$src" "$(dirname "$dst")"
+    elif [[ -e "$dst" ]]; then
+        echo skip "$dst"
     fi
+}
 
-    ln -s "$here"/"$target" "$HOME"/"$target"
+for target in $targets; do
+    src="$here"/"$target"
+    dst="$HOME"/"$target"
+
+    update_symlink "$src" "$dst"
 done
 
-readonly xdgtargets="/dircolors
-git/config
-readline/inputrc
-screen/screenrc
-tmux/tmux.conf
-zsh/.zshrc
-zsh/.zshenv
-zsh/10_prompt.zsh
-zsh/11_keybindings.zsh
-zsh/30_aliases.zsh
-zsh/50_setopt.zsh
-zsh/70_misc.zsh
-zsh/80_fzfcommands.zsh
-zsh/81_fzfcommands_overwrite.zsh
-zsh/packages.zsh
-/flake8
-python/configure_history.py"
-
-for target in $xdgtargets; do
-    dstdir="$XDG_CONFIG_HOME"/$(cut -d "/" -f1 <<<"$target")
-    [ ! -d "$dstdir" ] && mkdir -p "$dstdir"
-
+for target in $(find .config -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 -L 1 basename); do
+    src="$here"/.config/"$target"
     dst="$XDG_CONFIG_HOME"/"$target"
 
-    if [ -f "$dst" ]; then
-        echo remove "$dst"
-        rm -f "$dst"
-    fi
-
-    src="$here"/.config/"$target"
-
-    ln -sf "$src" "$dst"
+    update_symlink "$src" "$dst"
 done
 
-readonly usertargets="aliases
-exports"
+for target in $(find .config -mindepth 1 -maxdepth 1 -type f -print0 | xargs -0 -L 1 basename); do
+    src="$here"/.config/"$target"
+    dst="$XDG_CONFIG_HOME"/"$target"
 
-[ ! -d "$XDG_CONFIG_HOME"/"$USER" ] && mkdir -p "$XDG_CONFIG_HOME"/"$USER"
-
-for target in $usertargets; do
-    original="$XDG_CONFIG_HOME"/"$USER"/"$target"
-
-    ln -fsT "$here"/"$target" "$original"
+    update_symlink "$src" "$dst"
 done

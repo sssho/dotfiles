@@ -85,6 +85,6 @@ if which bat &> /dev/null; then
     fi
 fi
 
-if [[ -r "$XDG_CONFIG_HOME"/"$USER"/aliases.local ]]; then
-    source "$XDG_CONFIG_HOME"/"$USER"/aliases.local
+if [[ -r "$XDG_CONFIG_HOME"/user/aliases.local ]]; then
+    source "$XDG_CONFIG_HOME"/user/aliases.local
 fi

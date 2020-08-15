@@ -39,6 +39,6 @@ if [[ -r "$XDG_CONFIG_HOME"/python/configure_history.py ]]; then
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/configure_history.py
 fi
 
-if [[ -r "$XDG_CONFIG_HOME"/"$USER"/exports.local ]]; then
-    source "$XDG_CONFIG_HOME"/"$USER"/exports.local
+if [[ -r "$XDG_CONFIG_HOME"/user/exports.local ]]; then
+    source "$XDG_CONFIG_HOME"/user/exports.local
 fi

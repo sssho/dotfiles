@@ -24,26 +24,21 @@ if [[ -z "$LESSOPEN" ]]; then
     export LESSOPEN="|/usr/bin/lesspipe.sh %s"
 fi
 
-# Go
-export GOPATH="$HOME"/project/go
-[ ! -d "$HOME/project/go" ] && mkdir -p "$HOME/project/go"
-export PATH=${GOPATH}/bin:$PATH
-
-if [[ -r "$XDG_CONFIG_HOME"/"$USER"/exports.local ]]; then
-    source "$XDG_CONFIG_HOME"/"$USER"/exports.local
-fi
-
 # Use XDG Standard Dirs
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
-
+export GOPATH="$XDG_DATA_HOME"/go
+export GOBIN="$HOME"/local/bin
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
 
 if [[ -r "$XDG_CONFIG_HOME"/python/configure_history.py ]]; then
     export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/configure_history.py
+fi
+
+if [[ -r "$XDG_CONFIG_HOME"/"$USER"/exports.local ]]; then
+    source "$XDG_CONFIG_HOME"/"$USER"/exports.local
 fi

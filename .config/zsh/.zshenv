@@ -1,13 +1,12 @@
 typeset -gx -U path
 
 path=(~/local/bin(N-) \
-      ~/local/go/bin \
+      ~/local/go/bin(N-) \
       "$path[@]")
 
 typeset -gx -U fpath
 
-fpath=(~/.zsh/Completion(N-/)
-       $fpath)
+fpath=("$ZDOTDIR"/completion(N-/) $fpath)
 
 [[ ! -d "$XDG_CACHE_HOME"/zsh ]] && mkdir -p "$XDG_CACHE_HOME"/zsh
 

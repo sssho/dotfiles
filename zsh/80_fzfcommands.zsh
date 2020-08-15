@@ -91,7 +91,7 @@ function pgo() {
 # Go to another running shell's work directory
 function sgo() {
     local selected=$(
-        pgrep zsh | \
+        pgrep -u $USER zsh | \
         sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
         xargs -L 1 ls -l | awk '{print $11}' | \
         sort | uniq | \

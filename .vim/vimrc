@@ -151,8 +151,8 @@ nnoremap <Leader>h :History<CR>
 nnoremap <Leader>b :FZFBufferAndCachedFiles<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>p "*p<CR>
-nnoremap <Leader>P "*P<CR>
+nnoremap <Leader>p "+p<CR>
+nnoremap <Leader>P "+P<CR>
 nnoremap <Leader>R :QuickRun<CR>
 
 imap <silent> jj <ESC>

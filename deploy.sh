@@ -32,6 +32,14 @@ screen/screenrc
 tmux/tmux.conf
 zsh/.zshrc
 zsh/.zshenv
+zsh/10_prompt.zsh
+zsh/11_keybindings.zsh
+zsh/30_aliases.zsh
+zsh/50_setopt.zsh
+zsh/70_misc.zsh
+zsh/80_fzfcommands.zsh
+zsh/81_fzfcommands_overwrite.zsh
+zsh/packages.zsh
 /flake8
 python/configure_history.py"
 
@@ -52,8 +60,7 @@ for target in $xdgtargets; do
 done
 
 readonly usertargets="aliases
-exports
-zsh"
+exports"
 
 [ ! -d "$XDG_CONFIG_HOME"/"$USER" ] && mkdir -p "$XDG_CONFIG_HOME"/"$USER"
 

@@ -9,14 +9,12 @@ typeset -gx -U fpath
 fpath=(~/.zsh/Completion(N-/)
        $fpath)
 
-# Autoload
-autoload -Uz compinit && compinit
-# [ ! -d "$XDG_CACHE_HOME"/zsh ] && mkdir -p "$XDG_CACHE_HOME"/zsh
-compinit -d "$XDG_CACHE_HOME"/zsh/.zcompdump
+[[ ! -d "$XDG_CACHE_HOME"/zsh ]] && mkdir -p "$XDG_CACHE_HOME"/zsh
+
+autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump
 
 # History
-[[ ! -d "$XDG_DATA_HOME"/zsh ]] && mkdir -p "$XDG_DATA_HOME"/zsh
-export HISTFILE="$XDG_DATA_HOME"/zsh/history
+export HISTFILE="$XDG_CACHE_HOME"/zsh/history
 export HISTSIZE=10000000
 export SAVEHIST="$HISTSIZE"
 

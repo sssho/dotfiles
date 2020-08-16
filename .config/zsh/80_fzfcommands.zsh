@@ -1,4 +1,4 @@
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+[ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ] && source "$XDG_CONFIG_HOME"/fzf/fzf.zsh
 
 # Functions using fzf
 # https://github.com/junegunn/fzf
@@ -24,7 +24,7 @@ function fzf_select_tmux_pane() {
 }
 alias td='fzf_select_tmux_pane'
 
-function select_cache_file() {
+function fzf_select_cache_file() {
     if ! which cachef &> /dev/null; then
         return 0
     fi
@@ -36,18 +36,18 @@ function select_cache_file() {
 
     print -z -- "$selected"
 }
-alias ca='select_cache_file'
+alias ca='fzf_select_cache_file'
 
-function generic_filter() {
+function fzf_generic_filter() {
     local selected=$(fzf < /dev/stdin)
 
     [ -z "$selected" ] && return 0
 
     print -z -- "$selected"
 }
-alias -g F='|generic_filter'
+alias -g F='|fzf_generic_filter'
 
-function rgf() {
+function fzf_select_rg_result() {
     local selected
     local dst
 
@@ -58,9 +58,10 @@ function rgf() {
     dst=$(echo "$selected" | awk -F: '{print $1}')
     print -z "$dst"
 }
+alias rgf='fzf_select_rg_result'
 
 # Go to any directory visited before
-function goto() {
+function fzf_select_cdr_and_cd() {
     local selected=$(cdr -l | awk '{print $2}' | \
                 fzf --no-sort --prompt="Select dir> ")
 
@@ -72,12 +73,13 @@ function goto() {
 
     cd "$dst"
 }
+alias goto='fzf_select_cdr_and_cd'
 
 # Go to project directory
-function pgo() {
-    [ -r "$HOME/.config/$USER/projdirs" ] || return 1
+function fzf_select_projdir_and_cd() {
+    [ -r "$XDG_CONFIG_HOME"/user/projdirs ] || return 0
 
-    local selected=$(cat "$HOME/.config/$USER/projdirs" | fzf --prompt="Select project dir> ")
+    local selected=$(cat "$XDG_CONFIG_HOME"/user/projdirs | fzf --prompt="Select project dir> ")
 
     [ -z "$selected" ] && return 0
 
@@ -87,9 +89,10 @@ function pgo() {
 
     cd "$dst"
 }
+alias pgo='fzf_select_projdir_and_cd'
 
 # Go to another running shell's work directory
-function sgo() {
+function fzf_select_pgrep_and_cd() {
     local selected=$(
         pgrep -u $USER zsh | \
         sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
@@ -105,12 +108,13 @@ function sgo() {
 
     cd "$dst"
 }
+alias sgo='fzf_select_pgrep_and_cd'
 
 # Select python virtual env
-function pysel() {
-    [ -f "$HOME/.config/$USER/pyenvs" ] || return 1
+function fzf_select_python_venv() {
+    [ -f "$XDG_CONFIG_HOME"/user/pyenvs ] || return 0
 
-    local selected=$(cat "$HOME/.config/$USER/pyenvs" | fzf --no-sort --prompt="Select python venv> ")
+    local selected=$(cat "$XDG_CONFIG_HOME"/user/pyenvs | fzf --no-sort --prompt="Select python venv> ")
 
     [ -z "$selected" ] && return 0
 
@@ -125,19 +129,20 @@ function pysel() {
     echo "source $pyenv"
     source "$pyenv"
 }
+alias pysel='fzf_select_python_venv'
 
 # Select git add target files by fzf
-function ga() {
+function fzf_select_gitadd_target_files() {
     local selected=$(git status -s | fzf -m --no-sort)
 
-    [ -z "selected" ] && return 0
+    [ -z "$selected" ] && return 0
 
     local target_files=$(echo "$selected" | awk '{print $2}' | tr '\n' ' ')
 
     echo "git add $target_files"
     git add ${=target_files}
 }
-alias a='ga'
+alias a='fzf_select_gitadd_target_files'
 
 _gen_fzf_default_opts() {
     local base03="234"

@@ -8,7 +8,7 @@ if ! which fzf &> /dev/null; then
 fi
 
 if which fd &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='fd -H --exclude ".git" --exclude ".svn" --exclude "__pycache__"'
+    export FZF_DEFAULT_COMMAND='fd -H -L'
 fi
 
 function fzf_select_tmux_pane() {

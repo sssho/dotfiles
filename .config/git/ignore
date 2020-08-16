@@ -1,0 +1,8 @@
+.git/
+.svn/
+.subversion/
+__pycache__/
+local/src/
+.cache/
+.local/
+.emacs.d/straight/

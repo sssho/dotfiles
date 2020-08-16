@@ -51,11 +51,11 @@ if which ag &> /dev/null; then
 fi
 
 if which rg &> /dev/null; then
-    alias rg="rg --hidden -L -g '!.git' -g '!.svn' -g '!.cache' -g '!__pycache__'"
+    alias rg="rg --hidden -L"
 fi
 
 if which fd &> /dev/null; then
-    alias fd='fd -H -L -E .git -E .svn -E .cache -E __pycache_'
+    alias fd='fd -H -L'
 fi
 
 if which bat &> /dev/null; then

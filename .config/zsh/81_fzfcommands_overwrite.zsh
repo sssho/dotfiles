@@ -4,17 +4,16 @@ if ! which fd &> /dev/null; then
   return
 fi
 
-__fd_exclude="-E '.git' -E '.svn' -E '__pycache__'"
 _fzf_compgen_path() {
   echo "$1"
-  fd "$__fd_exclude" -L -H . "$1"
+  eval command fd -H -L . "$1"
 }
 
 _fzf_compgen_dir() {
-  fd "$__fd_exclude" -L -H -t d . "$1"
+  eval command fd -H -L -t d . "$1"
 }
 
-export FZF_CTRL_T_COMMAND="command fd $__fd_exclude -H -L -d 5"
+export FZF_CTRL_T_COMMAND="command fd -H -L"
 
 bindkey -r '^T'
 bindkey '^O' fzf-file-widget

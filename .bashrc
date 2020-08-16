@@ -2,9 +2,9 @@ if [[ -r /etc/bashrc ]]; then
     source /etc/bashrc
 fi
 
-if [[ -r "$HOME/.config/$USER/aliases" ]]; then
+if [[ -r "$XDG_CONFIG_HOME"/user/aliases ]]; then
     # shellcheck source=/dev/null
-    source "$HOME/.config/$USER/aliases"
+    source "$XDG_CONFIG_HOME"/user/aliases
 fi
 
 # Disable C-s and C-q
@@ -22,4 +22,4 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE=ls
 
 # shellcheck source=/dev/null
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
+[ -f "$XDG_CONFIG_HOME"/fzf/fzf.bash ] && source "$XDG_CONFIG_HOME"/fzf/fzf.bash

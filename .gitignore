@@ -1,1 +1,4 @@
 .vim/autoload/
+.config/user/*
+!.config/user/exports
+!.config/user/aliases

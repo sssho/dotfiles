@@ -3,9 +3,9 @@
 if which exa &> /dev/null; then
     alias ls='exa -F'
     alias 1='exa -F1'
-    alias la='exa -Fla'
-    alias ltr='exa -Fl --sort newest'
-    alias latr='exa -Fla --sort newest'
+    alias la='exa -Flag'
+    alias ltr='exa -Flg --sort newest'
+    alias latr='exa -Flag --sort newest'
 else
     alias ls='ls -F --color=auto'
     alias 1='ls -1'

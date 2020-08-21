@@ -28,6 +28,7 @@ fi
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GOPATH="$XDG_DATA_HOME"/go
 export GOBIN="$HOME"/local/bin
 export CARGO_HOME="$XDG_DATA_HOME"/cargo

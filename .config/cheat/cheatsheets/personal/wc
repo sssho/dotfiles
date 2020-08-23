@@ -1,0 +1,2 @@
+# To print the length of the longest line
+wc -L

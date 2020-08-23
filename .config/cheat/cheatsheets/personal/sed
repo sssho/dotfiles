@@ -1,0 +1,2 @@
+# To snip lines:
+sed -n 2,4p

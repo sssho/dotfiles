@@ -1,0 +1,23 @@
+# To open all folds:
+zn
+
+# To close all folds:
+zm or zN
+
+# To open one fold under the cursor:
+zo
+
+# To close one fold under the cursor:
+zc
+
+# To move downwards to the start of the next fold:
+zj
+
+# To move upwards to the end of the previous fold:
+zk
+
+# To jump forwards to the next start of a change:
+]c
+
+# To jump backwards to the previous start od a change:
+[c

@@ -1,0 +1,5 @@
+# To yank global command result to 'q' register:
+'qqq:g//y Q'
+
+# To repeat previous macro:
+@@

@@ -1,0 +1,11 @@
+# To compress a file in place:
+gzip -c hoge.txt
+
+# To compress a file:
+gzip -c hoge.txt > hoge.txt.gz
+
+# To decompress a file in place:
+gzip -d hoge.txt.gz
+
+# To decompress a file to stdout:
+gzip -dc hoge.txt.gz

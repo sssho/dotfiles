@@ -1,0 +1,5 @@
+# To start new zsh (like login shell):
+exec -c zsh
+
+# To run command as external command, not built-in, function
+command echo

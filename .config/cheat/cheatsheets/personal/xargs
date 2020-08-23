@@ -1,0 +1,5 @@
+# To process per line:
+xargs -L1 basename
+
+# To specify argument position:
+xargs -I @ echo hoge @ fuga

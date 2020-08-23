@@ -1,0 +1,11 @@
+# To print the number of columns:
+awk '{ print NF }'
+
+# To print the last columns:
+awk '{ print $NF }'
+
+# To use regexp separator:
+awk -F '[: ]' '{ print $1,$2 }'
+
+# To pass variables:
+awk -v fmt="%20s %10s\n" '{ printf fmt,$1,$2 }'

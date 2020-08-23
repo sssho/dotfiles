@@ -1,0 +1,2 @@
+# To show a variable:
+M-x describe-variable

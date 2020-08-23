@@ -1,0 +1,3 @@
+# Extract a word consists of more then 3 charactors
+# following "/" or not:
+grep -oE "/?\w{3,}.*\w"

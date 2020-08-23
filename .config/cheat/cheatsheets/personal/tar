@@ -1,0 +1,2 @@
+# To create a .gz archive:
+tar -czf '/path/to/hoge.tar.gz' '/path/to/hoge/'

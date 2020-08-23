@@ -153,6 +153,17 @@ function fzf_git_add() {
 }
 alias a='fzf_git_add'
 
+if which cheat &> /dev/null; then
+    function fzf_cheat() {
+        local selected=$(cheat -l | tail -n +2 | cut -d ' ' -f1 | fzf)
+
+        [ -z "$selected" ] && return 0
+
+        cheat "$selected"
+    }
+    alias ct="fzf_cheat"
+fi
+
 _gen_fzf_default_opts() {
     local base03="234"
     local base02="235"

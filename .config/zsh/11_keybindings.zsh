@@ -1,16 +1,16 @@
 # Use emacs style
 bindkey -e
 
-# Disable not used keys
-# bindkey -r "^J"
-bindkey -r "^O" # use for screen/tmux
+bindkey "^j^j" vi-cmd-mode
+
+# Disable not used default keys
+bindkey -r "^O"
 bindkey -r "^Q"
 bindkey -r "^S"
 bindkey -r "^T"
 bindkey -r "^V"
 
 bindkey "^I" menu-complete
-# bindkey "^I" menu-expand-or-complete
 
 function _back_to_space() {
     zle vi-backward-blank-word

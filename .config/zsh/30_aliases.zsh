@@ -2,13 +2,18 @@ if [[ -r "$XDG_CONFIG_HOME"/user/aliases ]]; then
     source "$XDG_CONFIG_HOME"/user/aliases
 fi
 
-alias -g L='|& less -XR'
-alias -g G='| \grep --color=always'
-alias -g S='| sed'
+alias -g A="| awk '{ print }'"
+alias -g L='|& less'
+alias -g G='| grep --color=always'
+alias -g S="| sed -e 's///g'"
 alias -g X='| xargs'
 
 if which bat &> /dev/null && which cachef &> /dev/null; then
-    alias b='(){cachef $@; bat $@}'
+    _bat_with_cachef() {
+        cachef $@
+        bat $@
+    }
+    alias b='_bat_with_cachef'
 fi
 
 if which xclip &> /dev/null; then
@@ -17,15 +22,23 @@ if which xclip &> /dev/null; then
 fi
 
 if which rg &> /dev/null; then
-    alias -g R='| rg'
+    alias -g R='| rg --hidden -L'
 fi
 
 if which cachef &> /dev/null; then
-    alias v='(){cachef $@; vim --servername HOGE --remote $@}'
+    _vim_with_cachef() {
+        cachef $@
+        vim --servername HOGE --remote $@
+    }
+    alias v='_vim_with_cachef'
 fi
 
 if which cachef &> /dev/null; then
-    alias e='(){cachef $@; emacsclient -n $@}'
+    _emacs_with_cachef() {
+        cachef $@
+        emacsclient -n $@
+    }
+    alias e='_emacs_with_cachef'
 fi
 
 if declare -f cd-gitroot > /dev/null; then

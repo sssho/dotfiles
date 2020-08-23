@@ -67,6 +67,10 @@ if which colordiff &> /dev/null; then
     alias diffy="colordiff -y"
 fi
 
+if which cachef &> /dev/null; then
+    alias cf="cachef"
+fi
+
 if [[ -r "$XDG_CONFIG_HOME"/user/aliases.local ]]; then
     source "$XDG_CONFIG_HOME"/user/aliases.local
 fi

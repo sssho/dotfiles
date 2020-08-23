@@ -27,3 +27,7 @@ fi
 if which cachef &> /dev/null; then
     alias e='(){cachef $@; emacsclient -n $@}'
 fi
+
+if declare -f cd-gitroot > /dev/null; then
+    alias gr='cd-gitroot'
+fi

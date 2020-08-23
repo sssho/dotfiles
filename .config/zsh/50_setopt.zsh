@@ -1,3 +1,10 @@
+# Disable Ctrl-D logout
+setopt ignoreeof
+
+# Disable > for existing file. Use >| instead.
+# Disable >> for non existing file. Use > instead.
+setopt noclobber
+
 # Enable completion even after =. e.g. --prefix=hoge
 setopt magic_equal_subst
 
@@ -20,9 +27,6 @@ setopt share_history
 
 # Enable cd without typing cd
 setopt auto_cd
-
-#
-# setopt auto_pushd
 
 # Disable adding duplicated directory to directory stack
 setopt pushd_ignore_dups

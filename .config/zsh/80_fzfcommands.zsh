@@ -11,7 +11,7 @@ if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H -L'
 fi
 
-function fzf_select_tmux_pane() {
+function fzf_tmux_select_pane() {
     local window_name_width=$(tmux list-panes -s -F '#W' | wc -L)
     local command_width=$(tmux list-panes -s -F '#{pane_current_command}' | wc -L)
 
@@ -31,9 +31,9 @@ function fzf_select_tmux_pane() {
 
     tmux select-window -t $win_id; tmux select-pane -t $pane_id
 }
-alias td='fzf_select_tmux_pane'
+alias td='fzf_tmux_select_pane'
 
-function fzf_select_cache_file() {
+function fzf_cachef_list() {
     if ! which cachef &> /dev/null; then
         return 0
     fi
@@ -45,7 +45,7 @@ function fzf_select_cache_file() {
 
     print -z -- "$selected"
 }
-alias ca='fzf_select_cache_file'
+alias ca='fzf_cachef_list'
 
 function fzf_generic_filter() {
     local selected=$(fzf < /dev/stdin)
@@ -56,7 +56,7 @@ function fzf_generic_filter() {
 }
 alias -g F='|fzf_generic_filter'
 
-function fzf_select_rg_result() {
+function fzf_rg_result() {
     local selected
     local dst
 
@@ -67,10 +67,10 @@ function fzf_select_rg_result() {
     dst=$(echo "$selected" | awk -F: '{print $1}')
     print -z "$dst"
 }
-alias rgf='fzf_select_rg_result'
+alias rgf='fzf_rg_result'
 
 # Go to any directory visited before
-function fzf_select_cdr_and_cd() {
+function fzf_cd_history() {
     local selected=$(cdr -l | awk '{print $2}' | \
                 fzf --no-sort --prompt="Select dir> ")
 
@@ -82,10 +82,10 @@ function fzf_select_cdr_and_cd() {
 
     cd "$dst"
 }
-alias goto='fzf_select_cdr_and_cd'
+alias goto='fzf_cd_history'
 
 # Go to project directory
-function fzf_select_projdir_and_cd() {
+function fzf_cd_projdir() {
     [ -r "$XDG_CONFIG_HOME"/user/projdirs ] || return 0
 
     local selected=$(cat "$XDG_CONFIG_HOME"/user/projdirs | fzf --prompt="Select project dir> ")
@@ -98,10 +98,10 @@ function fzf_select_projdir_and_cd() {
 
     cd "$dst"
 }
-alias pgo='fzf_select_projdir_and_cd'
+alias pgo='fzf_cd_projdir'
 
 # Go to another running shell's work directory
-function fzf_select_pgrep_and_cd() {
+function fzf_cd_another_shell() {
     local selected=$(
         pgrep -u $USER zsh | \
         sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
@@ -117,10 +117,10 @@ function fzf_select_pgrep_and_cd() {
 
     cd "$dst"
 }
-alias sgo='fzf_select_pgrep_and_cd'
+alias sgo='fzf_cd_another_shell'
 
 # Select python virtual env
-function fzf_select_python_venv() {
+function fzf_activate_pyenv() {
     [ -f "$XDG_CONFIG_HOME"/user/pyenvs ] || return 0
 
     local selected=$(cat "$XDG_CONFIG_HOME"/user/pyenvs | fzf --no-sort --prompt="Select python venv> ")
@@ -138,10 +138,10 @@ function fzf_select_python_venv() {
     echo "source $pyenv"
     source "$pyenv"
 }
-alias pysel='fzf_select_python_venv'
+alias pysel='fzf_activate_pyenv'
 
 # Select git add target files by fzf
-function fzf_select_gitadd_target_files() {
+function fzf_git_add() {
     local selected=$(git status -s | fzf -m --no-sort)
 
     [ -z "$selected" ] && return 0
@@ -151,7 +151,7 @@ function fzf_select_gitadd_target_files() {
     echo "git add $target_files"
     git add ${=target_files}
 }
-alias a='fzf_select_gitadd_target_files'
+alias a='fzf_git_add'
 
 _gen_fzf_default_opts() {
     local base03="234"

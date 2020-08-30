@@ -1,0 +1,2 @@
+# To print all but last 2 lines:
+head -n -2

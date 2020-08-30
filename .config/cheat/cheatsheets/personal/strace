@@ -1,0 +1,2 @@
+# To show write system call info which hoge calls:
+strace -e trace=write -c ./hoge

@@ -1,0 +1,2 @@
+# To sort ps result by tty:
+ps u --sort tty

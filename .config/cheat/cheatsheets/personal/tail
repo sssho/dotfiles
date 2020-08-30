@@ -1,0 +1,2 @@
+# To print all but first 2 lines
+tail -n +2

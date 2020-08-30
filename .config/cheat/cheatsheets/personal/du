@@ -1,0 +1,2 @@
+# To check directory size and sort:
+du -smh * | sort -hr

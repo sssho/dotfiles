@@ -1,0 +1,11 @@
+# To extract first 1~3 chars:
+cut -c1-3
+
+# To extract last chars from char 3:
+cut -c3-
+
+# To extract 1st and 3rd fields:
+cut -d ' ' -f 1,3
+
+# To extract 1st and all last fields from 3:
+cut -d ' ' -f 1,3-

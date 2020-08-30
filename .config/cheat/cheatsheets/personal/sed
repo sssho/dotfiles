@@ -1,2 +1,8 @@
 # To snip lines:
 sed -n 2,4p
+
+# To insert hoge to 1st line(Use i command):
+sed '1ihoge'
+
+# To insert hoge to last line(Use a command):
+sed '$ahoge'

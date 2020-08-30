@@ -1,0 +1,2 @@
+# To use exact match(Use glob):
+fd -g hoge

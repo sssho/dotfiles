@@ -16,7 +16,7 @@ fi
 export EDITOR="vim"
 
 export PAGER=less
-export LESS="-R -M -i -S -X"
+export LESS="-R -M -i -X"
 export LESSCHARSET=utf-8
 export LESSHISTFILE=-
 

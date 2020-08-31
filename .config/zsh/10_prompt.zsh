@@ -1,15 +1,3 @@
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats "%F{green}[%b]%f"
-
-function _update_vcs_info_msg() {
-    vcs_info
-
-    RPROMPT="${vcs_info_msg_0_}"
-}
-
-add-zsh-hook precmd _update_vcs_info_msg
-
 # See https://qiita.com/b4b4r07/items/8db0257d2e6f6b19ecb9
 autoload -Uz colors; colors
 

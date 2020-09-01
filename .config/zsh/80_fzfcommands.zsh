@@ -11,28 +11,6 @@ if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H -L'
 fi
 
-function fzf_tmux_select_pane() {
-    local window_name_width=$(tmux list-panes -s -F '#W' | wc -L)
-    local command_width=$(tmux list-panes -s -F '#{pane_current_command}' | wc -L)
-
-    local panes=$(tmux list-panes -s -F '#{window_index} #W #{pane_index} #{pane_current_command} #{pane_current_path}')
-
-    local blue="\033[0;34m"
-    local green="\033[0;32m"
-    local reset="\033[0;39m"
-
-    local selected=$(awk -v s="%s:%-${window_name_width}s ${green}%s:%-${command_width}s${reset} ${blue}%s${reset}\n" '{ printf s,$1,$2,$3,$4,$5 }' <<<"$panes" | fzf --ansi --no-sort)
-
-    [[ -z "$selected" ]] && return
-
-    local win_id pane_id
-
-    sed 's/ \+/ /g' <<<"$selected" | awk -F '[: ]' '{ print $1,$3 }' | read win_id pane_id
-
-    tmux select-window -t $win_id; tmux select-pane -t $pane_id
-}
-alias td='fzf_tmux_select_pane'
-
 function fzf_cachef_list() {
     if ! which cachef &> /dev/null; then
         return 0

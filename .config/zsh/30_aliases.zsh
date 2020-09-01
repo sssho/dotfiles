@@ -22,7 +22,7 @@ if which xclip &> /dev/null; then
 fi
 
 if which rg &> /dev/null; then
-    alias -g R='| rg --hidden -L'
+    alias -g R='| rg -i'
 fi
 
 if which cachef &> /dev/null; then

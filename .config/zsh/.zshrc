@@ -1,24 +1,23 @@
-# https://github.com/zplug/zplug
-if [[ -f ~/local/zplug/init.zsh ]]; then
-    export ZPLUG_HOME=~/local/zplug
-    export ZPLUG_CACHE_DIR="$XDG_CACHE_HOME"/zplug
-    export ZPLUG_ERROR_LOG="$XDG_CACHE_HOME"/zplug/error_log
-    export ZPLUG_LOADFILE="$XDG_CONFIG_HOME"/zsh/packages.zsh
-    source "$ZPLUG_HOME"/init.zsh
+# https://github.com/zdharma/zinit
+if [[ -f "$HOME"/local/zinit/bin/zinit.zsh ]]; then
+    declare -A ZINIT
+    ZINIT[BIN_DIR]="$HOME"/local/zinit/bin
+    ZINIT[HOME_DIR]="$HOME"/local/zinit
+    ZINIT[PLUGINS_DIR]="$HOME"/local/zinit/plugins
+    ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME"/zinit/.zcompdump
 
-    # Install plugins if there are plugins that have not been installed
-    if ! zplug check --verbose; then
-        printf "Install? [y/N]: "
-        if read -q; then
-            echo; zplug install
-        fi
-    fi
+    source "$HOME"/local/zinit/bin/zinit.zsh
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
 
-    zplug load
+    zinit light zsh-users/zsh-autosuggestions
+    zinit light zdharma/fast-syntax-highlighting
+    zinit light mollifier/cd-gitroot
 
-    # for solarized dark theme
-    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=238'
-else
-    echo "zplug is not installed."
-    echo "  check -> https://github.com/zplug/zplug"
+    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=238"
 fi
+
+# Source personal settings
+for f in "$XDG_CONFIG_HOME"/zsh/<->_*.zsh; do
+    source "$f"
+done

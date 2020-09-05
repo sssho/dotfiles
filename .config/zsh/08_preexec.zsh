@@ -17,4 +17,5 @@ function _update_display_and_ssh_auth_sock() {
     _update_ssh_auth_sock
 }
 
+autoload -Uz add-zsh-hook
 add-zsh-hook preexec _update_display_and_ssh_auth_sock

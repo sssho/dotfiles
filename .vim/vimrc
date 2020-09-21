@@ -139,6 +139,8 @@ set smartindent
 "Visualize empty chars
 set list
 
+set tags=~/.cache/tags/tags
+
 syntax enable
 set background=dark
 colorscheme solarized

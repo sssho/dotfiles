@@ -1,0 +1,23 @@
+# To create tag for systemverilog files from stdin:
+find . -name '*.sv' xargs -L1 readlink -f | ctags --languages=SystemVerilog -L -
+
+# To create tag for systemverilog files from filelist:
+ctags --languages=SystemVerilog -L files.txt
+
+# To create tag recursively:
+ctags -R --languages=SystemVerilog
+
+# To show supported languages:
+ctags --list-languages
+
+# To show available features:
+ctags --list-features
+
+# To show extentions:
+ctags --list-maps
+
+# To show symbols:
+ctags --list-kinds
+
+# To output json format:
+ctags -R --output-format=json

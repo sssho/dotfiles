@@ -157,6 +157,16 @@ if which cheat &> /dev/null; then
     alias ct="fzf_cheat"
 fi
 
+function fzf_switch_tags() {
+    [[ ! -d "$XDG_CACHE_HOME"/tags ]] && return 1
+    local selected=$(find "$XDG_CACHE_HOME"/tags -type f | $(__fzfcmd))
+
+    [[ -z "$selected" ]] && return 0
+
+    ln -sf "$selected" "$XDG_CACHE_HOME"/tags/tags
+}
+alias tsel="fzf_switch_tags"
+
 _gen_fzf_default_opts() {
     local base03="234"
     local base02="235"

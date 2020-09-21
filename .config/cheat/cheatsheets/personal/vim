@@ -3,3 +3,9 @@
 
 # To repeat previous macro:
 @@
+
+# To show keybind:
+:help index.txt
+
+# To go to older, newer posion in change list:
+g; g,

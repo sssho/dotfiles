@@ -1,4 +1,8 @@
-[ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ] && source "$XDG_CONFIG_HOME"/fzf/fzf.zsh
+if [[ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ]]; then
+    source "$XDG_CONFIG_HOME"/fzf/fzf.zsh
+else
+    return
+fi
 
 # Functions using fzf
 # https://github.com/junegunn/fzf
@@ -11,13 +15,22 @@ if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H -L'
 fi
 
+function _tmux_popup_available() {
+    [[ -z "$TMUX" || -z "$TMUX_VERSION" ]] && return 1
+    # remove version attribute such as 'a', 'b', 'rc-1' etc
+    [[ "${TMUX_VERSION:0:3}" > 3.1 ]]
+}
+
+# Use popup if available
+_tmux_popup_available && export FZF_TMUX_OPTS="-p"
+
 function fzf_cachef_list() {
     if ! which cachef &> /dev/null; then
         return 0
     fi
 
     local cachefile=$(cachef --cache-file)
-    local selected=$(fzf --tac --no-sort < $cachefile)
+    local selected=$($(__fzfcmd) --tac < $cachefile)
 
     [ -z "$selected" ] && return 0
 
@@ -26,7 +39,7 @@ function fzf_cachef_list() {
 alias ca='fzf_cachef_list'
 
 function fzf_generic_filter() {
-    local selected=$(fzf < /dev/stdin)
+    local selected=$($(__fzfcmd) < /dev/stdin)
 
     [ -z "$selected" ] && return 0
 
@@ -38,7 +51,7 @@ function fzf_rg_result() {
     local selected
     local dst
 
-    selected=$(rg --hidden --no-heading --color always "$@" | fzf --no-sort --ansi)
+    selected=$(rg --hidden --no-heading --color always "$@" | $(__fzfcmd) --no-sort --ansi)
 
     [ -z "$selected" ] && return 0
 
@@ -49,8 +62,9 @@ alias rgf='fzf_rg_result'
 
 # Go to any directory visited before
 function fzf_cd_history() {
-    local selected=$(cdr -l | awk '{print $2}' | \
-                fzf --no-sort --prompt="Select dir> ")
+    local selected=$(export FZF_TMUX_OPTS="-p 80%,50%"; cdr -l | \
+        awk '{print $2}' | \
+        $(__fzfcmd) --no-sort --prompt="Select dir>")
 
     [ -z "$selected" ] && return 0
 
@@ -66,7 +80,8 @@ alias goto='fzf_cd_history'
 function fzf_cd_projdir() {
     [ -r "$XDG_CONFIG_HOME"/user/projdirs ] || return 0
 
-    local selected=$(cat "$XDG_CONFIG_HOME"/user/projdirs | fzf --prompt="Select project dir> ")
+    local selected=$(cat "$XDG_CONFIG_HOME"/user/projdirs | \
+        $(__fzfcmd) --prompt="Select project dir> ")
 
     [ -z "$selected" ] && return 0
 
@@ -85,7 +100,7 @@ function fzf_cd_another_shell() {
         sed -e 's|^|/proc/|' -e 's|$|/cwd|' | \
         xargs -L 1 ls -l | awk '{print $11}' | \
         sort | uniq | \
-        fzf --prompt="Select working dir> ")
+        $(__fzfcmd) --prompt="Select working dir> ")
 
     [ -z "$selected" ] && return 0
 
@@ -101,7 +116,7 @@ alias sgo='fzf_cd_another_shell'
 function fzf_activate_pyenv() {
     [ -f "$XDG_CONFIG_HOME"/user/pyenvs ] || return 0
 
-    local selected=$(cat "$XDG_CONFIG_HOME"/user/pyenvs | fzf --no-sort --prompt="Select python venv> ")
+    local selected=$(cat "$XDG_CONFIG_HOME"/user/pyenvs | $(__fzfcmd) --no-sort --prompt="Select python venv> ")
 
     [ -z "$selected" ] && return 0
 
@@ -120,7 +135,7 @@ alias pysel='fzf_activate_pyenv'
 
 # Select git add target files by fzf
 function fzf_git_add() {
-    local selected=$(git status -s | fzf -m --no-sort)
+    local selected=$(git status -s | $(__fzfcmd) -m --no-sort)
 
     [ -z "$selected" ] && return 0
 
@@ -133,7 +148,7 @@ alias a='fzf_git_add'
 
 if which cheat &> /dev/null; then
     function fzf_cheat() {
-        local selected=$(cheat -l | tail -n +2 | cut -d ' ' -f1 | fzf)
+        local selected=$(cheat -l | tail -n +2 | cut -d ' ' -f1 | $(__fzfcmd))
 
         [ -z "$selected" ] && return 0
 

@@ -34,8 +34,6 @@ alias yarakasi='git reset --soft HEAD^'
 # alias t='make test'
 # alias r='make run'
 
-alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-
 alias vims='vim --servername HOGE'
 alias v='vim --servername HOGE --remote'
 alias sunovim='vim -N -u NONE -i NONE --noplugin'

@@ -191,11 +191,22 @@ function! s:SourceMyCompSource()
 endfunction
 call s:SourceMyCompSource()
 
-command! FZFBufferAndCachedFiles call fzf#run({
+function! s:TmuxPopupAvailable()
+  let l:tmux_version = str2nr(system('tmux -V | cut -d " " -f2 | cut -c1-3 | tr -d "."'))
+
+  return l:tmux_version >= 32
+endfunction
+
+if exists('$TMUX') && s:TmuxPopupAvailable()
+  let g:fzf_layout = { 'tmux': '-p90%,60%' }
+else
+  let g:fzf_layout = { 'down': '40%' }
+endif
+
+command! FZFBufferAndCachedFiles call fzf#run(fzf#wrap({
 \ 'source':  reverse(s:buffer_and_cached_files()),
 \ 'sink':    'edit',
-\ 'options': '-m -x +s',
-\ 'down':    '40%' })
+\ 'options': '-m -x +s' }))
 
 function! s:buffer_and_cached_files()
   let l:buffers = map(

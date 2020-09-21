@@ -1,4 +1,4 @@
-snippet setup "setup" b
+snippet demo-setup "setup" b
 .PHONY: build
 build:
 	:${0}
@@ -14,6 +14,35 @@ test:
 .PHONY: clean
 clean:
 	:
+endsnippet
+
+snippet demo-template "template" b
+#DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+#CANDIDATES := $(wildcard .??*) $(wildcard .config/*)
+#EXCLUDE    := .git .gitignore .globalrc .lesskey .clang-format .config
+#DOTFILES   := $(filter-out $(EXCLUDE), $(CANDIDATES))
+
+GOMI := $(wildcard .??*) $(wildcard gomi/*)
+
+.DEFAULT_GOAL := help
+
+list: ## List dotfiles
+	@$(foreach f, $(DOTFILES), /bin/ls -dF $(f);)
+
+check: ##
+	@echo -- Follwing files will be overwridden or removed
+	@$(foreach f, $(DOTFILES), /bin/ls -dF $(HOME)/$(f) 2>/dev/null;)
+
+install: ##
+	@if [ ! -d $(HOME)/.config ]; then mkdir -p $(HOME)/.config; fi
+	@$(foreach f, $(DOTFILES), ln -sfnv $(abspath $(f)) $(HOME)/$(f);)
+
+clean: ## Remove gomi files
+	$(RM) -rf $(GOMI)
+
+help: ## This help
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $\$1, $\$2}'
 endsnippet
 
 snippet pytest "run pytest" b

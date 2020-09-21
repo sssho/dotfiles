@@ -1,0 +1,2 @@
+# To find executable files excluding under '.git' directory:
+find . -name '.git' -prune -o -executable -type f -print

@@ -18,6 +18,13 @@ export FZF_CTRL_T_COMMAND="command fd -H -L"
 bindkey -r '^T'
 bindkey '^O' fzf-file-widget
 
+_fzf-history-widget-wrap() {
+    FZF_TMUX_OPTS="-p 80%,80%" fzf-history-widget
+}
+zle     -N   _fzf-history-widget-wrap
+bindkey -r '^R'
+bindkey '^R' _fzf-history-widget-wrap
+
 # Enable ## and @@
 _fzf_cachef_completion() {
   if ! which cachef &> /dev/null; then
@@ -25,7 +32,7 @@ _fzf_cachef_completion() {
   fi
 
   local cachefile=$(cachef --cache-file)
-  local selected=$(fzf --tac --no-sort < $cachefile)
+  local selected=$($(__fzfcmd) --tac --no-sort < $cachefile)
 
   [ -z "$selected" ] && selected=""
 
@@ -39,7 +46,7 @@ _fzf_tmux_completion() {
     return 0
   fi
 
-  local selected=$(tmuxcomplete -l '-s' | fzf --no-sort)
+  local selected=$(tmuxcomplete -l '-s' | $(__fzfcmd) --no-sort)
 
   [ -z "$selected" ] && selected=""
 

@@ -200,7 +200,7 @@ function! s:TmuxPopupAvailable()
 endfunction
 
 if exists('$TMUX') && s:TmuxPopupAvailable()
-  let g:fzf_layout = { 'tmux': '-p90%,60%' }
+  let g:fzf_layout = { 'tmux': '-p80%,80%' }
 else
   let g:fzf_layout = { 'down': '40%' }
 endif

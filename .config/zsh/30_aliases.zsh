@@ -7,6 +7,7 @@ alias -g L='|& less'
 alias -g G='| grep --color=always'
 alias -g S="| sed -e 's///g'"
 alias -g X='| xargs'
+alias -g H='--help | less'
 
 if which bat &> /dev/null && which cachef &> /dev/null; then
     _bat_with_cachef() {

@@ -12,8 +12,10 @@ function zle-keymap-select zle-line-init zle-line-finish
             mode="%{$fg[magenta]%}{N}%{$reset_color%}"
             ;;
     esac
+    # https://unix.stackexchange.com/questions/369847/how-to-configure-zsh-prompt-so-that-its-length-is-proportional-to-terminal-width
+    local width=$(( ${COLUMNS:-90} * 70 / 100 ))
     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-    PROMPT="%(?.%{${fg[yellow]}%}.%{${fg[red]}%})%n@%m{%?}%{${color_end}%}$mode %{$fg[cyan]%}%~%{${reset_color}%}
+    PROMPT="%(?.%{${fg[yellow]}%}.%{${fg[red]}%})%n@%m{%?}%{${color_end}%}$mode %{$fg[cyan]%}%${width}<..<%~%<<%{${reset_color}%}
 %# "
     zle reset-prompt
 }

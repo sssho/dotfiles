@@ -6,14 +6,14 @@ function zle-keymap-select zle-line-init zle-line-finish
     local mode
     case $KEYMAP in
         main|viins)
-            mode="$fg[blue]{I}$reset_color"
+            mode="%{$fg[blue]%}{I}%{$reset_color%}"
             ;;
         vicmd)
-            mode="$fg[magenta]{N}$reset_color"
+            mode="%{$fg[magenta]%}{N}%{$reset_color%}"
             ;;
     esac
     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-    PROMPT="%(?.%{${fg[yellow]}%}.%{${fg[red]}%})%n@%m{%?}${color_end}$mode $fg[cyan]%~${reset_color}
+    PROMPT="%(?.%{${fg[yellow]}%}.%{${fg[red]}%})%n@%m{%?}%{${color_end}%}$mode %{$fg[cyan]%}%~%{${reset_color}%}
 %# "
     zle reset-prompt
 }

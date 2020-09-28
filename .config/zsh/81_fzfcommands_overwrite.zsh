@@ -19,7 +19,7 @@ bindkey -r '^T'
 bindkey '^O' fzf-file-widget
 
 _fzf-history-widget-wrap() {
-    FZF_TMUX_OPTS="-p 80%,80%" fzf-history-widget
+    FZF_TMUX_OPTS="${FZF_TMUX_OPTS:+-p 80%,80%}" fzf-history-widget
 }
 zle     -N   _fzf-history-widget-wrap
 bindkey -r '^R'
@@ -32,7 +32,7 @@ _fzf_cachef_completion() {
   fi
 
   local cachefile=$(cachef --cache-file)
-  local selected=$($(__fzfcmd) --tac --no-sort < $cachefile)
+  local selected=$(export FZF_TMUX_OPTS="${FZF_TMUX_OPTS:+-p 80%,80%}"; $(__fzfcmd) --tac --no-sort < $cachefile)
 
   [ -z "$selected" ] && selected=""
 

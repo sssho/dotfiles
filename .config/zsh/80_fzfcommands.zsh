@@ -62,7 +62,7 @@ alias rgf='fzf_rg_result'
 
 # Go to any directory visited before
 function fzf_cd_history() {
-    local selected=$(export FZF_TMUX_OPTS="-p 80%,80%"; cdr -l | \
+    local selected=$(export FZF_TMUX_OPTS="${FZF_TMUX_OPTS:+-p 80%,80%}"; cdr -l | \
         awk '{print $2}' | \
         $(__fzfcmd) --no-sort --prompt="Select dir>")
 

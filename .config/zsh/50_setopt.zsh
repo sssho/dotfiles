@@ -36,3 +36,6 @@ setopt no_flow_control
 
 # Disable beep
 setopt no_beep
+
+# Allow comment in command line
+setopt interactive_comments

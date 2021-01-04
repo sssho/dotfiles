@@ -1,0 +1,113 @@
+snippet bashbang "/usr/bin/bash" b
+#!/usr/bin/bash -u
+endsnippet
+
+snippet demo-while "while read line" b
+# grep stdin and do something for each lines
+while IFS= read -r line; do
+    : # do something
+done < <(grep hoge)
+endsnippet
+
+snippet demo-parse-args "option parser" b
+#!/usr/bin/bash -u
+
+readonly SCRIPT_NAME=${0##*/}
+readonly VERSION=0.0.1
+
+help() {
+    cat <<-END
+Usage: $SCRIPT_NAME [OPTION]... INFILE
+Do something for INFILE
+
+-d, --directory=DIRECTORY root dir
+-s, --suffix=SUFFIX suffix
+-i, --ignore-case ignore case distinctions
+-n, --line-number print line number
+
+--help
+--version
+END
+}
+
+version() {
+    echo "$VERSION"
+}
+
+parse_args() {
+    local args
+    args=$(getopt -n "$SCRIPT_NAME" \
+        -o d:s:in -l directory: -l suffix: -l ignore-case -l line-number \
+        -l help -l version -- "$@") || return 1
+
+    # Update positional parametes by $args
+    eval set -- "$args"
+
+    local directory=.
+    local suffix="defalt_suffix"
+    local ignore_case=
+    local line_number=
+    local help_=
+    local version_=
+
+    while [[ $# -gt 0 ]]; do
+        case "\$1" in
+            -d | --directory)
+                directory=\$2
+                shift 2
+                ;;
+            -s | --suffix)
+                suffix=\$2
+                shift 2
+                ;;
+            -i | --ignore-case)
+                ignore_case=true
+                shift
+                ;;
+            -n | --line-number)
+                line_number=true
+                shift
+                ;;
+            --help)
+                help_=true
+                shift
+                ;;
+            --version)
+                version_=true
+                shift
+                ;;
+            --)
+                shift
+                break
+                ;;
+        esac
+    done
+
+    # Positional parameter
+    local infile=\${1:-}
+
+    if [[ -z "$infile" ]]; then
+        if [[ -z "$help_" && -z "$version_" ]]; then
+            echo INFILE required 1>&2
+            return 1
+        fi
+    fi
+
+    echo "$directory,$suffix,$ignore_case,$line_number,$help_,$version_,$infile"
+
+}
+
+args=$(parse_args "$@") || { help; exit 1; }
+IFS=, read -r directory suffix ignore_case line_number help_ version_ infile <<<"${args}"
+
+[[ -n "$help_" ]] && { help; exit 0; }
+[[ -n "$version_" ]] && { version; exit 0; }
+
+echo "directory $directory"
+echo "suffix $suffix"
+echo "ignore_case $ignore_case"
+echo "line_number $line_number"
+echo "help_ $help_"
+echo "version_ $version_"
+echo "infile $infile"
+endsnippet

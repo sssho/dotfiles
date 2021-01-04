@@ -9,3 +9,9 @@
 
 # To go to older, newer posion in change list:
 g; g,
+
+# To remove \n
+s/\n//
+
+# To substitute \n
+s/ /\r/

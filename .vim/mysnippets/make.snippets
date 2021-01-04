@@ -45,6 +45,19 @@ help: ## This help
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $\$1, $\$2}'
 endsnippet
 
+snippet demo-if "if else" b
+FLAG ?=
+
+ifeq ($(FLAG),)
+	NUM := 3
+else
+	NUM := 1
+endif
+
+all:
+	@echo $(NUM)
+endsnippet
+
 snippet pytest "run pytest" b
 python -m pytest
 endsnippet

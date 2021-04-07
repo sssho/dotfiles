@@ -2,16 +2,12 @@
 
 if which exa &> /dev/null; then
     alias ls='exa -F'
-    alias 1='exa -F1'
-    alias la='exa -Flag'
+    alias 1='exa -Flag --sort newest'
     alias ltr='exa -Flg --sort newest'
-    alias latr='exa -Flag --sort newest'
 else
     alias ls='ls -F --color=auto'
-    alias 1='ls -1'
-    alias la='ls -lha'
+    alias 1='ls -lhatr'
     alias ltr='ls -lhtr'
-    alias latr='ls -lhatr'
 fi
 
 alias ..='cd ../'

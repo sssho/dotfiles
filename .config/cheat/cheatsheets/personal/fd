@@ -1,2 +1,8 @@
 # To use exact match(Use glob):
 fd -g hoge
+
+# To search under specific directory
+fd pattern /path/to/search_root
+
+# To search with file extention and any filename under specific directory
+fd -e py . /path/to/search_root

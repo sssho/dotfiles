@@ -43,3 +43,8 @@ fi
 if [[ -r "$XDG_CONFIG_HOME"/user/exports.local ]]; then
     source "$XDG_CONFIG_HOME"/user/exports.local
 fi
+
+if [[ -f "$XDG_CONFIG_HOME"/ripgrep/config ]]; then
+    export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/config
+fi
+

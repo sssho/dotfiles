@@ -23,7 +23,8 @@ Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace'
 Plug 'thinca/vim-quickrun'
 Plug 'altercation/vim-colors-solarized'
-Plug '~/local/fzf'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'
@@ -150,9 +151,12 @@ set list
 set tags=~/.cache/tags/tags
 
 syntax enable
+
 set background=dark
+" let g:solarized_contrast="low"  " For Windows terminal
 colorscheme solarized
-let g:solarized_visibility = "low"
+
+" let g:solarized_visibility = "low"
 
 let mapleader = "\<Space>"
 
@@ -229,3 +233,5 @@ function! s:buffer_and_cached_files()
   return extend(
   \ split(system('cat $(cachef --cache-file)')), buffers)
 endfunction
+
+au BufRead,BufNewFile *.do set filetype=tcl

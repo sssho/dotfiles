@@ -1,17 +1,17 @@
 # Setup fzf
-if [[ ! -d "${HOME}/local/fzf" ]]; then
+if [[ ! -d "${XDG_DATA_HOME}/fzf" ]]; then
   return
 fi
 
 # ---------
 if [[ ! "$PATH" == *"$HOME"/local/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}${HOME}/local/fzf/bin"
+  export PATH="${PATH:+${PATH}:}${XDG_DATA_HOME}/fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "${HOME}/local/fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "${XDG_DATA_HOME}/fzf/shell/completion.bash" 2> /dev/null
 
 # Key bindings
 # ------------
-source "${HOME}/local/fzf/shell/key-bindings.bash"
+source "${XDG_DATA_HOME}/fzf/shell/key-bindings.bash"

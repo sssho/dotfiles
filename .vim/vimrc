@@ -234,4 +234,6 @@ function! s:buffer_and_cached_files()
   \ split(system('cat $(cachef --cache-file)')), buffers)
 endfunction
 
-au BufRead,BufNewFile *.do set filetype=tcl
+if filereadable(expand('$HOME/.vim/vimrc_local.vim'))
+  source $HOME/.vim/vimrc_local.vim
+endif

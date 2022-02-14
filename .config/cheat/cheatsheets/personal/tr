@@ -1,0 +1,2 @@
+# To convert lower to upper
+echo hoge | tr '[a-z]' '[A-Z]'

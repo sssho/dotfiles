@@ -9,3 +9,16 @@ awk -F '[: ]' '{ print $1,$2 }'
 
 # To pass variables:
 awk -v fmt="%20s %10s\n" '{ printf fmt,$1,$2 }'
+
+# To get cmd result (getline):
+awk '{"echo hoge "$1"" | getline a; print a}'
+
+# Escaple single quote in double quoto ('\''):
+ls -l | awk '{"tr '\''[a-z]'\'' '\''[A-Z]'\'' <<<"$4"" | getline a; print a}'
+
+# Redirect per line, filename is linenumber.txt:
+/bin/ls -1 | awk '{printf "%03d\0%s\n",NR,$0}' | awk -F'\0' '{print $2 > $1".txt"}'
+
+# Uniq without sort:
+awk '{a[$0]++}END{for (k in a) print k}'
+

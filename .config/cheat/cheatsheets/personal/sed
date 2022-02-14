@@ -1,8 +1,22 @@
 # To snip lines:
+sed -n 2p
 sed -n 2,4p
+sed -n 2,$p
+sed -n /^hoge/,/fuga$/p
 
 # To insert hoge to 1st line(Use i command):
 sed '1ihoge'
 
 # To insert hoge to last line(Use a command):
 sed '$ahoge'
+
+# Covert uppert/lower:
+sed -E 's/(.*)/\U\1/g'
+sed -E 's/(.*)/\L\1/g'
+
+# Repeat:
+sed -E 's/.{8}/& /g'
+sed -E 's/(hoge){2}/& /g'
+
+# Label:
+echo '<<a>>>' | sed -E ':a;s/<([^<])>/\1/;ta'

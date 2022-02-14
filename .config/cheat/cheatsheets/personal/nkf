@@ -1,0 +1,2 @@
+# To convert shift_jis to utf8:
+nkf -wLux shift_jis.txt

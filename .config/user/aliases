@@ -10,10 +10,16 @@ else
     alias ltr='ls -lhtr'
 fi
 
+alias bls='/bin/ls -F --color=auto'
+alias b1='/bin/ls -lhatr'
+alias bltr='/bin/ls -lhtr'
+
 alias ..='cd ../'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias rmf='rm -f'
+alias rmrf='rm -rf'
 
 alias l='less'
 

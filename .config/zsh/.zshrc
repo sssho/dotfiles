@@ -1,12 +1,12 @@
 # https://github.com/zdharma/zinit
-if [[ -f "$XDG_DATA_HOME"/zinit/bin/zinit.zsh ]]; then
+if [[ -d "$XDG_DATA_HOME"/zinit/zinit.git ]]; then
     declare -A ZINIT
     ZINIT[BIN_DIR]="$XDG_DATA_HOME"/zinit/bin
     ZINIT[HOME_DIR]="$XDG_DATA_HOME"/zinit
     ZINIT[PLUGINS_DIR]="$XDG_DATA_HOME"/zinit/plugins
     ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME"/zinit/.zcompdump
 
-    source "$XDG_DATA_HOME"/zinit/bin/zinit.zsh
+    source "$XDG_DATA_HOME"/zinit/zinit.git/zinit.zsh
     autoload -Uz _zinit
     (( ${+_comps} )) && _comps[zinit]=_zinit
 

@@ -1,9 +1,8 @@
-# Functions using fzf
 # https://github.com/junegunn/fzf
 
-if ! which fzf &> /dev/null; then
-    return 1
-fi
+[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && return
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 
 if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H -L'

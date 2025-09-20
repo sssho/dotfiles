@@ -71,6 +71,10 @@ if which cachef &> /dev/null; then
     alias cf="cachef"
 fi
 
+if which cd-gitroot &> /dev/null; then
+    alias cdg="cd-gitroot"
+fi
+
 if [[ -r "$XDG_CONFIG_HOME"/user/aliases.local ]]; then
     source "$XDG_CONFIG_HOME"/user/aliases.local
 fi

@@ -17,6 +17,9 @@ if [[ -d "$XDG_DATA_HOME"/zinit/zinit.git ]]; then
     export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=238"
 fi
 
+# https://github.com/junegunn/fzf
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
 # Source personal settings
 for f in "$XDG_CONFIG_HOME"/zsh/<->_*.zsh; do
     source "$f"

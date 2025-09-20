@@ -48,3 +48,7 @@ if [[ -f "$XDG_CONFIG_HOME"/ripgrep/config ]]; then
     export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/config
 fi
 
+# https://github.com/junegunn/fzf
+if [[ -f "$XDG_CONFIG_HOME/fzf/fzfrc" ]]; then
+    export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
+fi

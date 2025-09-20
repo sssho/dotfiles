@@ -21,5 +21,5 @@ export PS1="\[\e[36m\]\u@\h \W \[\e[0m\]\\$ "
 export HISTCONTROL=ignoredups
 export HISTIGNORE=ls
 
-# shellcheck source=/dev/null
-[ -f "$XDG_CONFIG_HOME"/fzf/fzf.bash ] && source "$XDG_CONFIG_HOME"/fzf/fzf.bash
+# https://github.com/junegunn/fzf
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash

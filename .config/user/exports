@@ -21,7 +21,7 @@ export LESSCHARSET=utf-8
 export LESSHISTFILE=-
 
 if [[ -z "$LESSOPEN" ]]; then
-    export LESSOPEN="|/usr/bin/lesspipe.sh %s"
+    export LESSOPEN="|/usr/bin/lesspipe %s"
 fi
 
 # Use XDG Standard Dirs

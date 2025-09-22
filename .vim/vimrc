@@ -11,7 +11,7 @@ if filereadable(expand('$HOME/.vim/vimrc_local.vim'))
   source $HOME/.vim/vimrc_local.vim
 endif
 
-set statusline=%m%f%r\ [%{&fileencoding}:%{&fileformat}:%{&filetype}]\ %l/%L\ %c\ %p%%\ %{strftime('%H:%M')}
+set statusline=%m%f%r\ [%{&filetype}:%{&fileencoding}:%{&fileformat}]\ %l/%L\ %c\ %p%%\ %{strftime('%H:%M')}
 
 command! ReloadVimrc execute 'source $MYVIMRC' | echo "Reloaded: " . expand('$MYVIMRC')
 

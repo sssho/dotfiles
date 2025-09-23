@@ -9,9 +9,10 @@
 [alias]
 	l = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	ll = log --oneline --name-status
-	s = status -s
-	ss = status
+	s = status
+	ss = status -s
 	d = diff
+	dc = diff --cached
 	b = branch
 	co = checkout
 	m = commit

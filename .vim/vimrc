@@ -128,13 +128,13 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'Yggdroot/indentLine'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive', { 'tag': 'v2.5' }
+Plug 'tpope/vim-fugitive'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'cespare/vim-toml'
 Plug 'w0rp/ale', { 'tag': 'v2.7.0' }
 Plug 'davidhalter/jedi-vim', { 'tag': '0.10.0' }
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp', { 'tag': 'v0.1.1' }
+Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'

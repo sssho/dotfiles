@@ -1,9 +1,9 @@
 # bash/zsh common aliases
 
-if which exa &> /dev/null; then
-    alias ls='exa -F'
-    alias 1='exa -Flag --sort newest'
-    alias ltr='exa -Flg --sort newest'
+if which eza &> /dev/null; then
+    alias ls='eza -F'
+    alias 1='eza -F -lag --sort newest'
+    alias ltr='eza -F -lg --sort newest'
 else
     alias ls='ls -F --color=auto'
     alias 1='ls -lhatr'
@@ -11,7 +11,7 @@ else
 fi
 
 alias bls='/bin/ls -F --color=auto'
-alias b1='/bin/ls -lhatr'
+alias b1='/bin/ls -1'
 alias bltr='/bin/ls -lhtr'
 
 alias ..='cd ../'

@@ -1,8 +1,8 @@
 # https://github.com/junegunn/fzf
 
-[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && return
+which fzf &> /dev/null || return
 
-source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+source <(fzf --zsh)
 
 if which fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd -H -L'
@@ -115,7 +115,7 @@ function fzf_activate_pyenv() {
 
     local pyenv=$(eval echo "${selected}")
 
-    if [ -f "$pyenv" ] || return 1
+    [ -f "$pyenv" ] || return 1
 
     if which deactivate &> /dev/null; then
         deactivate

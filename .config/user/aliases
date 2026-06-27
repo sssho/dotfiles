@@ -4,10 +4,12 @@ if which eza &> /dev/null; then
     alias ls='eza -F'
     alias 1='eza -F -lag --sort newest'
     alias ltr='eza -F -lg --sort newest'
+    alias t='eza -Tal --color=always'
 else
     alias ls='ls -F --color=auto'
     alias 1='ls -lhatr'
     alias ltr='ls -lhtr'
+    alias t='tree'
 fi
 
 alias bls='/bin/ls -F --color=auto'

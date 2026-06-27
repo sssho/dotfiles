@@ -1,7 +1,6 @@
 [user]
 	name = sssho
 	email = 43515414+sssho@users.noreply.github.com
-
 [color]
 	diff = auto
 	status = auto
@@ -24,3 +23,5 @@
 	prune = true
 [color "diff"]
 	meta = magenta
+[core]
+	autocrlf = input

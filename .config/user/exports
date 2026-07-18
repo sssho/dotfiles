@@ -1,6 +1,8 @@
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_CACHE_HOME="$HOME"/.cache
-export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+export PATH="$HOME/.local/bin:$PATH"
 
 export LANG=en_US.UTF-8
 
@@ -8,7 +10,7 @@ export TERM=xterm-256color
 
 # ls (TERM must be set before)
 if [[ -x /usr/bin/dircolors ]]; then
-    if [[ -r "$XDG_CONFIG_HOME"/dircolors ]]; then
+    if [[ -r "$XDG_CONFIG_HOME/dircolors" ]]; then
         eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
     fi
 fi
@@ -25,27 +27,19 @@ if [[ -z "$LESSOPEN" ]]; then
 fi
 
 # Use XDG Standard Dirs
-export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
-export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
-export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
-export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
-export GOPATH="$XDG_DATA_HOME"/go
-export GOBIN="$HOME"/local/bin
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export PYLINTHOME="$XDG_CACHE_HOME"/pylint
-export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
-export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export GOPATH="$XDG_DATA_HOME/go"
+export GOBIN="$HOME/local/bin"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
-if [[ -r "$XDG_CONFIG_HOME"/python/configure_history.py ]]; then
-    export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/configure_history.py
+if [[ -r "$XDG_CONFIG_HOME/python/configure_history.py" ]]; then
+    export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/configure_history.py"
 fi
 
-if [[ -r "$XDG_CONFIG_HOME"/user/exports.local ]]; then
-    source "$XDG_CONFIG_HOME"/user/exports.local
-fi
-
-if [[ -f "$XDG_CONFIG_HOME"/ripgrep/config ]]; then
-    export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/config
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+if [[ -f "$XDG_CONFIG_HOME/ripgrep/config" ]]; then
+    export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 fi
 
 # https://github.com/junegunn/fzf

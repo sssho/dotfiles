@@ -1,0 +1,120 @@
+{
+  "log": {
+    "prefix": "log",
+    "body": [
+      "from logging import StreamHandler, getLogger, DEBUG",
+      "",
+      "logger = getLogger(__file__)",
+      "logger.addHandler(StreamHandler())",
+      "logger.setLevel(DEBUG)",
+      "${0}"
+    ],
+    "description": "setup logger"
+  },
+  "here": {
+    "prefix": "here",
+    "body": [
+      "import os",
+      "import sys",
+      "",
+      "here = os.path.dirname(os.path.realpath(__file__))",
+      "",
+      "sys.path.append(here)",
+      "${0}"
+    ],
+    "description": "add cwd to sys.path"
+  },
+  "demo-textread": {
+    "prefix": "demo-textread",
+    "body": [
+      "def textstream(path):",
+      "    with open(path, \"r\") as ifile:",
+      "        for line in lines:",
+      "            line = line.rstrip()",
+      "",
+      "            if not line:",
+      "                continue",
+      "",
+      "            yield line"
+    ],
+    "description": "read text from file"
+  },
+  "demo-binread": {
+    "prefix": "demo-binread",
+    "body": [
+      "from functools import partial",
+      "",
+      "def binstream(path):",
+      "    with open(path, 'rb') as ifile:",
+      "        chunk_byte = 4",
+      "        read_chunk = partial(ifile.read, chunk_byte)",
+      "",
+      "        for data in iter(read_chunk, b''):",
+      "            yield data",
+      "${0}"
+    ],
+    "description": "read bindata from file"
+  },
+  "exit": {
+    "prefix": "exit",
+    "body": [
+      "__import__('sys').exit(1)"
+    ],
+    "description": "sys.exit(1)"
+  },
+  "debug": {
+    "prefix": "debug",
+    "body": [
+      "logger.debug(${0})"
+    ],
+    "description": "logger.debug()"
+  },
+  "pformat": {
+    "prefix": "pformat",
+    "body": [
+      "__import__('pprint').pformat(${0})"
+    ],
+    "description": "pprint.pformat()"
+  },
+  "demo-jinja2": {
+    "prefix": "demo-jinja2",
+    "body": [
+      "from jinja2 import Environment, FileSystemLoader",
+      "",
+      "env = Environment(loader=FileSystemLoader(\".\"))",
+      "template = env.get_template(\"hoge.j2\")",
+      "",
+      "print(template.render(data=data))"
+    ],
+    "description": "jinja2 setup demo"
+  },
+  "demo-argparse": {
+    "prefix": "demo-argparse",
+    "body": [
+      "import argparse",
+      "",
+      "def parse_args() -> argparse.Namespace:",
+      "    \"\"\"Parse commandline argument.\"\"\"",
+      "    parser = argparse.ArgumentParser(description=\"argparse sample.\")",
+      "",
+      "    # Positional argument",
+      "    parser.add_argument(\"name\", help=\"sample name\")",
+      "    parser.add_argument(\"num\", type=int, help=\"sample number\")",
+      "    parser.add_argument(\"seacret\", metavar=\"S\", help=\"sample s\")",
+      "    parser.add_argument(\"select\", choices=[\"one\", \"two\", \"three\"])",
+      "",
+      "    # Positional but not mandatory",
+      "    parser.add_argument(\"filepath0\", nargs=\"*\", default=None)",
+      "    parser.add_argument(\"filepath1\", nargs=\"?\", default=None)",
+      "",
+      "    # Optional argument",
+      "    parser.add_argument(\"--opt0\", default=\"default\")",
+      "    parser.add_argument(\"--opt1\", dest=\"option1\")",
+      "    parser.add_argument(\"--flag0\", action=\"store_const\", const=\"set\")",
+      "    parser.add_argument(\"--flag1\", action=\"store_true\")",
+      "",
+      "    return parser.parse_args()"
+    ],
+    "description": "argparse demo"
+  }
+}

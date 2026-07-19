@@ -1,0 +1,42 @@
+{
+  "ifsni": {
+    "prefix": "ifsni",
+    "body": [
+      "{% if ${0} %}",
+      "{% endif %}"
+    ],
+    "description": "if ~ endif"
+  },
+  "ifelse": {
+    "prefix": "ifelse",
+    "body": [
+      "{% if ${0} %}",
+      "{% else %}",
+      "{% endif %}"
+    ],
+    "description": "if ~ else ~ endif"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "{% for ${0} %}",
+      "{% endfor %}"
+    ],
+    "description": "for ~ endfor"
+  },
+  "macro": {
+    "prefix": "macro",
+    "body": [
+      "{% macro ${0} %}",
+      "{% endmacro %}"
+    ],
+    "description": "macro ~ endmacro"
+  },
+  "import": {
+    "prefix": "import",
+    "body": [
+      "{% import \"${0}\" as %}"
+    ],
+    "description": "import"
+  }
+}

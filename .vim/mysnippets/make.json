@@ -1,0 +1,78 @@
+{
+  "demo-setup": {
+    "prefix": "demo-setup",
+    "body": [
+      ".PHONY: build",
+      "build:",
+      "\t:${0}",
+      "",
+      ".PHONY: run",
+      "run:",
+      "\t:",
+      "",
+      ".PHONY: test",
+      "test:",
+      "\t:",
+      "",
+      ".PHONY: clean",
+      "clean:",
+      "\t:"
+    ],
+    "description": "setup"
+  },
+  "demo-template": {
+    "prefix": "demo-template",
+    "body": [
+      "#DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))",
+      "#CANDIDATES := $(wildcard .??*) $(wildcard .config/*)",
+      "#EXCLUDE    := .git .gitignore .globalrc .lesskey .clang-format .config",
+      "#DOTFILES   := $(filter-out $(EXCLUDE), $(CANDIDATES))",
+      "",
+      "GOMI := $(wildcard .??*) $(wildcard gomi/*)",
+      "",
+      ".DEFAULT_GOAL := help",
+      "",
+      "list: ## List dotfiles",
+      "\t@$(foreach f, $(DOTFILES), /bin/ls -dF $(f);)",
+      "",
+      "check: ##",
+      "\t@echo -- Follwing files will be overwridden or removed",
+      "\t@$(foreach f, $(DOTFILES), /bin/ls -dF $(HOME)/$(f) 2>/dev/null;)",
+      "",
+      "install: ##",
+      "\t@if [ ! -d $(HOME)/.config ]; then mkdir -p $(HOME)/.config; fi",
+      "\t@$(foreach f, $(DOTFILES), ln -sfnv $(abspath $(f)) $(HOME)/$(f);)",
+      "",
+      "clean: ## Remove gomi files",
+      "\t$(RM) -rf $(GOMI)",
+      "",
+      "help: ## This help",
+      "\t@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \\",
+      "\t\t| awk 'BEGIN {FS = \":.*?## \"}; {printf \"\\033[36m%-10s\\033[0m %s\\n\", $\\$1, $\\$2}'"
+    ],
+    "description": "template"
+  },
+  "demo-if": {
+    "prefix": "demo-if",
+    "body": [
+      "FLAG ?=",
+      "",
+      "ifeq ($(FLAG),)",
+      "\tNUM := 3",
+      "else",
+      "\tNUM := 1",
+      "endif",
+      "",
+      "all:",
+      "\t@echo $(NUM)"
+    ],
+    "description": "if else"
+  },
+  "pytest": {
+    "prefix": "pytest",
+    "body": [
+      "python -m pytest"
+    ],
+    "description": "run pytest"
+  }
+}

@@ -1,3 +1,5 @@
+set nocompatible
+
 if has('vim_starting')
   if !exists($XDG_DATA_HOME)
     let $XDG_DATA_HOME = $HOME . '/.local/share'
@@ -131,8 +133,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'cespare/vim-toml'
-Plug 'w0rp/ale', { 'tag': 'v2.7.0' }
-Plug 'davidhalter/jedi-vim', { 'tag': '0.10.0' }
+" Plug 'w0rp/ale', { 'tag': 'v2.7.0' }
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
@@ -158,9 +159,32 @@ if s:has_plugin('vim-easy-align')
 endif
 
 if s:has_plugin('vim-lsp')
-  let g:lsp_diagnostics_enabled = 0
-  let g:lsp_signature_help_enabled = 0
   set omnifunc=lsp#complete
+
+  " インラインの行末表示は抑制し、カーソル行の詳細だけ下部に出す
+  let g:lsp_diagnostics_virtual_text_enabled = 0
+  let g:lsp_diagnostics_echo_cursor = 1
+  " let g:lsp_signature_help_enabled = 0
+
+  " ruff: フォーマット時に import ソート(I)も適用し、I001 を診断にも表示
+  let g:lsp_settings = {
+  \ 'pylsp-all': {
+  \   'workspace_config': {
+  \     'pylsp': {
+  \       'plugins': {
+  \         'ruff': {
+  \           'format': ['I'],
+  \           'extendSelect': ['I'],
+  \         },
+  \         'pylsp_mypy': {
+  \           'enabled': v:true,
+  \           'live_mode': v:true,
+  \         },
+  \       },
+  \     },
+  \   },
+  \ }
+  \}
 
   nnoremap <Leader>d :<C-u>LspDefinition<CR>
   nnoremap K :<C-u>LspHover<CR>

@@ -22,3 +22,8 @@ export PS1="\[\e[36m\]\u@\h \W \[\e[0m\]\\$ "
 
 HISTCONTROL=ignoredups
 HISTIGNORE=ls
+
+# https://github.com/junegunn/fzf
+if which fzf &> /dev/null; then
+    eval "$(fzf --bash)"
+fi

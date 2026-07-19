@@ -1,12 +1,4 @@
 typeset -gx -U path
-
-# path=(~/local/bin(N-/) \
-#       ~/local/go/bin(N-/) \
-#       "$path[@]")
-
-path=(~/.local/bin(N-/) \
-      "$path[@]")
-
 typeset -gx -U fpath
 
 fpath=("$ZDOTDIR"/completion(N-/) $fpath)

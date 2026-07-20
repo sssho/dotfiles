@@ -78,7 +78,7 @@ nnoremap <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
 
 " [mappings.insert]
-imap <silent> jj <ESC>
+imap <silent> jk <ESC>
 
 " [mappings.visual]
 vnoremap <silent> y y`]

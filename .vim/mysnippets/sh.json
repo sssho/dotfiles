@@ -2,9 +2,16 @@
   "bashbang": {
     "prefix": "bashbang",
     "body": [
-      "#!/usr/bin/bash -u"
+      "#!/usr/bin/bash"
     ],
     "description": "/usr/bin/bash"
+  },
+  "seteuo": {
+    "prefix": "set euo",
+    "body": [
+      "set -euo pipefail"
+    ],
+    "description": "set euo"
   },
   "demo-while": {
     "prefix": "demo-while",

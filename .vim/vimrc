@@ -195,6 +195,23 @@ if s:has_plugin('vim-lsp')
   nnoremap <Leader>n :<C-u>LspReferences<CR>
   nnoremap <Leader>f :<C-u>LspDocumentDiagnostics<CR>
   nnoremap <Leader>F :<C-u>LspDocumentFormat<CR>
+
+  " bash-language-server: hover/diagnostics等は残し、補完候補だけ止める
+  " NOTE: vim-plugのplugin/**/*.vimはvimrc読了後(VimEnter直前)にVim本体が
+  " 読み込むため、vimrc内で直接 autocmd User lsp_server_init を登録すると
+  " asyncomplete-lsp.vim側の登録より先に走ってしまい解除が空振りする。
+  " VimEnterまで登録自体を遅らせることで、asyncomplete-lsp.vimの登録より
+  " 後に発火する順序を保証する。
+  function! s:DisableBashLspCompletion() abort
+    call asyncomplete#unregister_source('asyncomplete_lsp_bash-language-server')
+  endfunction
+  function! s:SetupBashLspNoCompletion() abort
+    augroup vimrc_lsp_bash_no_completion
+      autocmd!
+      autocmd User lsp_server_init call s:DisableBashLspCompletion()
+    augroup END
+  endfunction
+  autocmd VimEnter * ++once call s:SetupBashLspNoCompletion()
 endif
 
 if s:has_plugin('ale')

@@ -66,6 +66,9 @@ set ttimeoutlen=10
 set t_vb=
 set novisualbell
 
+" [editor.json]
+let g:vim_json_conceal = 0
+
 " [syntax]
 syntax enable
 

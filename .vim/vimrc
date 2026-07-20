@@ -212,10 +212,6 @@ if s:has_plugin('vim-lsp')
   autocmd VimEnter * ++once call s:SetupBashLspNoCompletion()
 endif
 
-if s:has_plugin('ale')
-  let g:ale_completion_enabled = 0
-endif
-
 if s:has_plugin('asyncomplete-buffer.vim')
   call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
